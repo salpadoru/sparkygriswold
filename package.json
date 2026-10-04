@@ -12,7 +12,9 @@
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "lucide-react": "latest"
+    "lucide-react": "latest",
+    "tailwindcss": "latest",
+    "@tailwindcss/postcss": "latest"
   },
   "devDependencies": {
     "@types/node": "latest",
@@ -20,8 +22,6 @@
     "@types/react-dom": "latest",
     "autoprefixer": "latest",
     "postcss": "latest",
-    "tailwindcss": "latest",
-    "typescript": "latest",
-    "@tailwindcss/postcss": "latest"
+    "typescript": "latest"
   }
 }
