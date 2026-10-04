@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowDownRight, ArrowUpRight, Instagram, Mail, Music2, Phone } from "lucide-react";
+import { ArrowDownRight, ArrowUpRight, Mail, Music2, Phone } from "lucide-react";
 import { siteContent } from "@/lib/content";
 
 export default function Home() {
@@ -135,7 +135,7 @@ export default function Home() {
               CALL <Phone size={20} />
             </a>
             <a href="#" className="flex items-center justify-between border-t border-black/20 py-5 font-bold">
-              INSTAGRAM <Instagram size={20} />
+              INSTAGRAM <span aria-hidden="true">↗</span>
             </a>
           </div>
         </div>
