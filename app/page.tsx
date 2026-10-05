@@ -1,4 +1,4 @@
-import { ArrowDownRight, ArrowUpRight, Instagram, Play, Twitter, Youtube } from "lucide-react";
+import { ArrowDownRight, ArrowUpRight, Play } from "lucide-react";
 import { galleryImages, siteContent } from "@/lib/content";
 
 const nav = ["ABOUT", "CLIENTS", "EVENTS", "MUSIC", "GALLERY", "BLOG", "CONTACT"];
@@ -119,9 +119,9 @@ export default function Home() {
         <div className="contact-side">
           <p>CONTACT DETAILS, BOOKING INFORMATION AND THE RECOVERED CLIENT CONTENT WILL BE ADDED AS THE ARCHIVE REBUILD CONTINUES.</p>
           <div className="social-row">
-            <a href="https://instagram.com/sparkygriswold" target="_blank" rel="noreferrer"><Instagram size={19} /> INSTAGRAM</a>
-            <a href="https://twitter.com/sparkygriswold" target="_blank" rel="noreferrer"><Twitter size={19} /> TWITTER</a>
-            <a href="https://www.youtube.com/channel/UC35VgUHjggiefJFCCfNVxJw" target="_blank" rel="noreferrer"><Youtube size={19} /> YOUTUBE</a>
+            <a href="https://instagram.com/sparkygriswold" target="_blank" rel="noreferrer">INSTAGRAM ↗</a>
+            <a href="https://twitter.com/sparkygriswold" target="_blank" rel="noreferrer">TWITTER ↗</a>
+            <a href="https://www.youtube.com/channel/UC35VgUHjggiefJFCCfNVxJw" target="_blank" rel="noreferrer">YOUTUBE ↗</a>
           </div>
         </div>
       </section>
