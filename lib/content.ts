@@ -5,37 +5,35 @@ export type EventItem = {
   city: string;
 };
 
-export type MixItem = {
-  title: string;
-  genre: string;
-  image: string;
-};
+export const galleryImages = Array.from({ length: 40 }, (_, index) => index + 1).map(
+  (number) => ({
+    number,
+    src: `/archive/${number}-150x150.jpg`,
+    full: `/archive/${number}.jpg`,
+  })
+);
 
 export const siteContent = {
   hero: {
-    eyebrow: "DJ • ENTERTAINER • MUSIC LOVER",
+    eyebrow: "DJ • MUSIC • EVENTS",
     title: "SPARKY\nGRISWOLD",
-    body: "A high-energy DJ and entertainer bringing decades of music, personality and properly unforgettable nights to the room.",
-    primaryCta: "BOOK SPARKY",
-    secondaryCta: "LISTEN TO MIXES"
+    body: "The original Sparky Griswold site, reimagined as a clean modern home for the music, events and archive.",
+    primaryCta: "CONTACT",
+    secondaryCta: "VIEW GALLERY",
   },
-  about: {
-    title: "THE MAN\nBEHIND THE MUSIC",
-    body: "From packed clubs to private celebrations, Sparky has built a career around reading the room, knowing the record and keeping the energy moving."
+  archive: {
+    title: "THE ARCHIVE",
+    body: "The 2018 site featured a gallery of 40 photographs, music, events, clients and a blog. The new site keeps that character while giving the material a much cleaner presentation.",
   },
-  services: [
-    { number: "01", title: "PRIVATE EVENTS", body: "Weddings, celebrations and parties that need a soundtrack with personality." },
-    { number: "02", title: "CORPORATE", body: "Polished production, confident hosting and music that works for the room." },
-    { number: "03", title: "CLUBS & FESTIVALS", body: "Big-room energy, deep crates and an instinct for what comes next." }
-  ] as const,
-  events: [
-    { title: "UPCOMING LIVE SET", venue: "New York", date: "TBA", city: "NYC" },
-    { title: "PRIVATE EVENT", venue: "Manhattan", date: "TBA", city: "NYC" },
-    { title: "SPECIAL GUEST SET", venue: "TBA", date: "TBA", city: "USA" }
-  ] satisfies EventItem[],
   mixes: [
-    { title: "THE SPARKY SET", genre: "CLASSICS / DANCE", image: "/images/mix-01.svg" },
-    { title: "FRIDAY NIGHT", genre: "HOUSE / DISCO", image: "/images/mix-02.svg" },
-    { title: "AFTER DARK", genre: "ECLECTIC / CLUB", image: "/images/mix-03.svg" }
-  ] satisfies MixItem[]
+    { title: "Summer at Sparkys", meta: "MIXCLOUD" },
+    { title: "The Holiday Hangover", meta: "MIXCLOUD" },
+  ],
+  events: [
+    { title: "Thursday, December 31st", venue: "", date: "", city: "" },
+    { title: "Friday, December 19th", venue: "", date: "", city: "" },
+    { title: "Saturday, December 12th", venue: "", date: "", city: "" },
+    { title: "Friday, December 11th", venue: "", date: "", city: "" },
+    { title: "Saturdays, November-December", venue: "", date: "", city: "" },
+  ] satisfies EventItem[],
 };
