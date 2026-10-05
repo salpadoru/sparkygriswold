@@ -62,7 +62,6 @@ export default function Home() {
               <img
                 src={image.src}
                 alt={`Sparky Griswold archive photograph ${image.number}`}
-                onError={(event) => { event.currentTarget.style.display = "none"; }}
               />
               <span>{String(image.number).padStart(2, "0")}</span>
             </a>
