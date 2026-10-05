@@ -80,7 +80,7 @@ export default function Home() {
 
         <div className="mix-list">
           {siteContent.mixes.map((mix, index) => (
-            <a className="mix-row" key={mix.title} href="#" onClick={(event) => event.preventDefault()}>
+            <a className="mix-row" key={mix.title} href="#music">
               <span>0{index + 1}</span>
               <strong>{mix.title}</strong>
               <em>{mix.meta}</em>
