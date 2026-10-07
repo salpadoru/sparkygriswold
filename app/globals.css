@@ -88,6 +88,10 @@ h2 span { color: var(--red); }
 footer { display: flex; justify-content: space-between; gap: 20px; padding: 25px 4vw; font-size: 9px; letter-spacing: .16em; color: var(--muted); }
 
 @media (max-width: 900px) {
+  .client-grid { grid-template-columns: 1fr; }
+  .service-row { grid-template-columns: 42px 1fr 30px; }
+  .service-row p { grid-column: 2; }
+
   .site-header { height: 82px; }
   .brand { width: 62px; height: 62px; }
   .site-header nav { display: none; }
@@ -104,4 +108,94 @@ footer { display: flex; justify-content: space-between; gap: 20px; padding: 25px
   .mix-row, .event-row { grid-template-columns: 42px 1fr 30px; }
   .mix-row em, .event-row > span:nth-child(3) { display: none; }
   footer { flex-direction: column; }
+}
+
+
+.highlight-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+.highlight-list li {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+  color: rgba(240,238,232,.78);
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: .05em;
+}
+.service-row {
+  grid-template-columns: 70px minmax(180px, 1fr) minmax(280px, 1.5fr) 30px;
+  gap: 20px;
+  padding: 12px 0;
+}
+.service-row p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.clients-section {
+  padding: 130px 0;
+  background: var(--cream);
+  color: var(--black);
+}
+.clients-section .section-kicker { color: var(--red); }
+.client-grid {
+  width: min(1180px, 86vw);
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(0,0,0,.18);
+}
+.client-card {
+  background: var(--cream);
+  padding: 38px;
+  min-height: 270px;
+}
+.client-role {
+  margin: 0 0 28px;
+  color: var(--red);
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: .2em;
+}
+.client-card h3 {
+  margin: 0 0 18px;
+  font-size: 24px;
+  line-height: 1.05;
+}
+.client-card > p:last-child {
+  margin: 0;
+  color: #55534e;
+  font-size: 14px;
+  line-height: 1.65;
+}
+.venues-block {
+  width: min(1180px, 86vw);
+  margin: 90px auto 0;
+}
+.venue-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 25px;
+}
+.venue-list span {
+  border: 1px solid rgba(0,0,0,.2);
+  padding: 10px 12px;
+  font-size: 9px;
+  letter-spacing: .08em;
+}
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 32px;
+}
+.contact-details a {
+  font-size: 18px;
+  font-weight: 800;
 }
