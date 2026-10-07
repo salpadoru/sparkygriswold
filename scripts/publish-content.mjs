@@ -89,6 +89,7 @@ export const eventItems: EventItem[] = ${json(
       image: event.image_path
         ? `/content/gallery/${path.basename(event.image_path)}`
         : undefined,
+      externalUrl: event.external_url || undefined,
     }))
   )};
 `
