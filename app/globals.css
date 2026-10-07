@@ -896,3 +896,16 @@ footer {
     margin-top: 45px;
   }
 }
+
+
+/* --- Services navigation + typography refinement --- */
+.services-section .service-row svg {
+  transition: transform .2s ease;
+}
+.services-section .service-row:hover svg {
+  transform: translateX(4px);
+}
+.services-section .service-row p {
+  font-size: 13px;
+  line-height: 1.55;
+}
