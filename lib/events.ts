@@ -5,4 +5,5 @@ export type EventItem = {
   venue: string;
   description: string;
   image?: string;
+  externalUrl?: string;
 };
