@@ -1,5 +1,6 @@
 import { ArrowDownRight, ArrowUpRight, Play } from "lucide-react";
 import { galleryImages, siteContent } from "@/lib/content";
+import { eventItems } from "@/lib/generatedEvents";
 
 const nav = ["ABOUT", "SERVICES", "CLIENTS", "EVENTS", "MUSIC", "GALLERY", "CONTACT"];
 
@@ -115,11 +116,14 @@ export default function Home() {
         </div>
 
         <div className="event-list">
-          {siteContent.services.map((service, index) => (
-            <div className="event-row service-row" key={service.title}>
+          {eventItems.map((event, index) => (
+            <div className="event-row" key={event.id}>
               <span>0{index + 1}</span>
-              <strong>{service.title}</strong>
-              <p>{service.body}</p>
+              <strong>{event.title}</strong>
+              <div className="event-meta">
+                <span>{event.date ?? "DATE TBC"}</span>
+                <span>{event.venue}</span>
+              </div>
               <ArrowUpRight size={18} />
             </div>
           ))}
@@ -159,8 +163,11 @@ export default function Home() {
         <div className="gallery-grid">
           {galleryImages.map((image) => (
             <a className="gallery-card" key={image.number} href={image.full}>
-              <img src={image.src} alt={`Sparky Griswold archive photograph ${image.number}`} />
-              <span>{String(image.number).padStart(2, "0")}</span>
+              <img src={image.src} alt={image.name || `Sparky Griswold archive photograph ${image.number}`} />
+              <div className="gallery-label">
+                <span>{String(image.number).padStart(2, "0")}</span>
+                <span>{image.year ?? "ARCHIVE"}</span>
+              </div>
             </a>
           ))}
         </div>
