@@ -54,12 +54,12 @@ export const siteContent = {
     {
       title: "Sparky Griswold Presents...Summer '26 (Knicks in Five!)",
       meta: "MIXCLOUD • 2026",
-      href: "https://www.mixcloud.com/",
+      href: "#music",
     },
     {
       title: "Summer at Sparkys",
       meta: "MIXCLOUD • ARCHIVE",
-      href: "https://www.mixcloud.com/",
+      href: "#music",
     },
   ],
   events: [
