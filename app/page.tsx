@@ -1,10 +1,11 @@
 import { ArrowDownRight, ArrowUpRight, Play } from "lucide-react";
 import { galleryImages, siteContent } from "@/lib/content";
 
-const nav = ["ABOUT", "CLIENTS", "EVENTS", "MUSIC", "GALLERY", "CONTACT"];
+const nav = ["ABOUT", "SERVICES", "CLIENTS", "EVENTS", "MUSIC", "GALLERY", "CONTACT"];
 
 const sectionHref: Record<string, string> = {
   ABOUT: "#about",
+  SERVICES: "#services",
   CLIENTS: "#clients",
   EVENTS: "#events",
   MUSIC: "#music",
@@ -56,10 +57,28 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="services" className="events-section services-section">
+        <div className="section-heading">
+          <div>
+            <p className="section-kicker">02 / SERVICES</p>
+            <h2>THE RIGHT<br /><span>SET</span></h2>
+          </div>
+          <p className="section-note">TAILORED DJ EXPERIENCES</p>
+        </div>
+        <p className="services-intro">{siteContent.servicesIntro}</p>
+        <p className="events-intro">Experience across New York venues, private celebrations, corporate events, nightlife and major social occasions.</p>
+        <div className="venues-block events-venues">
+          <p className="section-kicker">SELECTED VENUES & EVENTS</p>
+          <div className="venue-list">
+            {siteContent.venues.map((venue) => <span key={venue}>{venue}</span>)}
+          </div>
+        </div>
+      </section>
+
       <section id="clients" className="clients-section">
         <div className="section-heading">
           <div>
-            <p className="section-kicker">02 / CLIENTS</p>
+            <p className="section-kicker">03 / CLIENTS</p>
             <h2>TRUSTED<br /><span>BY</span></h2>
           </div>
           <p className="section-note">EVENTS • BRANDS • PRIVATE CLIENTS</p>
@@ -86,7 +105,7 @@ export default function Home() {
       <section id="events" className="events-section">
         <div className="section-heading">
           <div>
-            <p className="section-kicker">03 / EVENTS</p>
+            <p className="section-kicker">04 / EVENTS</p>
             <h2>BUILT FOR<br /><span>THE ROOM</span></h2>
           </div>
           <p className="section-note">WEDDINGS • CORPORATE • CLUBS • FESTIVALS</p>
@@ -107,7 +126,7 @@ export default function Home() {
       <section id="music" className="music-section">
         <div className="section-heading">
           <div>
-            <p className="section-kicker">04 / MUSIC</p>
+            <p className="section-kicker">05 / MUSIC</p>
             <h2>LISTEN<br /><span>BACK</span></h2>
           </div>
           <Play size={44} strokeWidth={1} />
@@ -128,10 +147,10 @@ export default function Home() {
       <section id="gallery" className="gallery-section">
         <div className="section-heading">
           <div>
-            <p className="section-kicker">05 / GALLERY</p>
-            <h2>FORTY<br /><span>MEMORIES</span></h2>
+            <p className="section-kicker">06 / GALLERY</p>
+            <h2>PHOTO<br /><span>ARCHIVE</span></h2>
           </div>
-          <p className="section-note">THE ORIGINAL PHOTO ARCHIVE</p>
+          <p className="section-note">2015–2016 PHOTO ARCHIVE</p>
         </div>
 
         <div className="gallery-grid">
@@ -146,7 +165,7 @@ export default function Home() {
 
       <section id="contact" className="contact-section">
         <div>
-          <p className="section-kicker">06 / CONTACT</p>
+          <p className="section-kicker">07 / CONTACT</p>
           <h2>LET'S<br /><span>CONNECT.</span></h2>
         </div>
         <div className="contact-side">
