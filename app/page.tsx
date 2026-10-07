@@ -1,6 +1,7 @@
 import { ArrowDownRight, ArrowUpRight, Play } from "lucide-react";
 import { galleryImages, siteContent } from "@/lib/content";
 import { eventItems } from "@/lib/generatedEvents";
+import { formatEventDate } from "@/lib/events";
 
 const nav = ["ABOUT", "SERVICES", "CLIENTS", "EVENTS", "MUSIC", "GALLERY", "CONTACT"];
 
@@ -121,7 +122,7 @@ export default function Home() {
               <span>0{index + 1}</span>
               <strong>{event.title}</strong>
               <div className="event-meta">
-                <span>{event.date ?? "DATE TBC"}</span>
+                <span>{formatEventDate(event.date)}</span>
                 <span>{event.venue}</span>
               </div>
               <div className="event-action">
