@@ -69,13 +69,13 @@ h2 span { color: var(--red); }
 .music-section { background: var(--cream); color: var(--black); }
 .music-section .section-kicker, .music-section h2 span { color: var(--red); }
 .mix-list, .event-list { width: min(1180px, 86vw); margin: auto; border-top: 1px solid rgba(0,0,0,.2); }
-.mix-row, .event-row { min-height: 86px; display: grid; grid-template-columns: 70px 1fr 180px 30px; align-items: center; border-bottom: 1px solid rgba(0,0,0,.2); }
+.mix-row, .event-row { min-height: 86px; display: grid; grid-template-columns: 70px minmax(180px,1fr) 220px 30px; align-items: center; border-bottom: 1px solid rgba(0,0,0,.2); }
 .mix-row span, .event-row > span { font-size: 10px; letter-spacing: .15em; color: var(--muted); }
 .mix-row strong, .event-row strong { font-size: clamp(1.1rem, 2vw, 1.7rem); }
 .mix-row em { font-style: normal; font-size: 9px; letter-spacing: .2em; color: var(--muted); }
 
 .events-section { background: #121212; }
-.event-row { grid-template-columns: 70px 1fr 220px 30px; }
+.event-row { grid-template-columns: 70px minmax(180px,1fr) 220px 30px; }
 .event-row > span { color: var(--muted); }
 
 .contact-section { background: var(--red); color: #fff; display: grid; grid-template-columns: 1fr 1fr; gap: 10vw; padding: 130px 7vw; }
@@ -106,7 +106,7 @@ footer { display: flex; justify-content: space-between; gap: 20px; padding: 25px
   .header-cta { display: none; }
   .gallery-grid { grid-template-columns: repeat(2, 1fr); }
   .mix-row, .event-row { grid-template-columns: 42px 1fr 30px; }
-  .mix-row em, .event-row > span:nth-child(3) { display: none; }
+  .mix-row em, .event-meta { display: none; }
   footer { flex-direction: column; }
 }
 
@@ -199,3 +199,29 @@ footer { display: flex; justify-content: space-between; gap: 20px; padding: 25px
   font-size: 18px;
   font-weight: 800;
 }
+
+
+.event-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.event-meta span:last-child { color: var(--cream); }
+
+.gallery-label {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 9px;
+  letter-spacing: .15em;
+  text-shadow: 0 1px 8px #000;
+}
+.gallery-label span:last-child { color: rgba(255,255,255,.65); }
