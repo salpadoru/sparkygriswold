@@ -544,3 +544,73 @@ footer {
     height: 72px;
   }
 }
+
+
+/* --- Global content typography consistency --- */
+.venue-list span {
+  font-size: 12px;
+  letter-spacing: .055em;
+  padding: 11px 14px;
+}
+.venues-block .section-kicker {
+  font-size: 13px;
+  letter-spacing: .22em;
+}
+.services-intro {
+  font-size: clamp(1.1rem, 1.45vw, 1.35rem);
+  line-height: 1.5;
+}
+.services-section .service-row {
+  min-height: 128px;
+}
+.services-section .service-row strong {
+  font-size: clamp(1.55rem, 2.35vw, 2.25rem);
+}
+.services-section .service-row p {
+  font-size: 14px;
+  line-height: 1.6;
+}
+.event-row {
+  min-height: 125px;
+}
+.event-row > span {
+  font-size: 12px;
+}
+.event-row strong {
+  font-size: clamp(1.35rem, 2.1vw, 1.9rem);
+}
+.event-meta {
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: .10em;
+}
+.event-meta span:last-child {
+  font-size: 14px;
+}
+.section-note {
+  font-size: 13px;
+}
+.client-role {
+  font-size: 11px;
+}
+.client-card > p:last-child {
+  font-size: 15px;
+}
+.mix-row {
+  min-height: 105px;
+}
+.mix-row span,
+.mix-row em {
+  font-size: 11px;
+}
+.mix-row strong {
+  font-size: clamp(1.25rem, 2vw, 1.8rem);
+}
+@media (max-width: 900px) {
+  .event-row {
+    min-height: 110px;
+  }
+  .event-meta {
+    font-size: 11px;
+  }
+}
