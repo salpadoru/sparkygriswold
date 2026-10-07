@@ -74,7 +74,6 @@ export default function Home() {
               <span>0{index + 1}</span>
               <strong>{service.title}</strong>
               <p>{service.body}</p>
-              <ArrowRight size={18} />
             </div>
           ))}
         </div>
