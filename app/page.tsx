@@ -1,4 +1,4 @@
-import { ArrowDownRight, ArrowUpRight, Play } from "lucide-react";
+import { ArrowDownRight, ArrowRight, ArrowUpRight, Play } from "lucide-react";
 import { galleryImages, siteContent } from "@/lib/content";
 import { eventItems } from "@/lib/generatedEvents";
 import { formatEventDate } from "@/lib/events";
@@ -74,7 +74,7 @@ export default function Home() {
               <span>0{index + 1}</span>
               <strong>{service.title}</strong>
               <p>{service.body}</p>
-              <ArrowUpRight size={18} />
+              <ArrowRight size={18} />
             </div>
           ))}
         </div>
