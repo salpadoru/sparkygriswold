@@ -56,6 +56,7 @@ create table if not exists public.gallery (
   id uuid primary key default gen_random_uuid(),
   title text not null default '',
   caption text not null default '',
+  year integer,
   image_path text not null,
   category text not null default 'archive',
   event_id uuid references public.events(id) on delete set null,
@@ -64,6 +65,8 @@ create table if not exists public.gallery (
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
+
+alter table public.gallery add column if not exists year integer;
 
 create table if not exists public.testimonials (
   id uuid primary key default gen_random_uuid(),
