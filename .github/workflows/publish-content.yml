@@ -1,0 +1,32 @@
+name: Publish Content
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Publish Supabase content into the site
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: node scripts/publish-content.mjs
+
+      - name: Commit published content
+        run: |
+          git config user.name "sparkygriswold-content-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add lib/generatedGallery.ts lib/generatedEvents.ts public/content/gallery
+          git diff --cached --quiet && exit 0
+          git commit -m "Publish managed gallery and events"
+          git push
