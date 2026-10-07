@@ -26,10 +26,10 @@ async function supabase(pathname, options = {}) {
 }
 
 const gallery = await supabase(
-  "/rest/v1/gallery_items?select=id,title,image_path,alt_text,caption,year,sort_order&published=eq.true&order=sort_order.asc,created_at.asc"
+  "/rest/v1/gallery?select=id,title,image_path,caption,sort_order,created_at&published=eq.true&order=sort_order.asc,created_at.asc"
 );
 const events = await supabase(
-  "/rest/v1/events?select=id,title,event_date,venue,description,image_path,sort_order&published=eq.true&order=event_date.asc.nullslast,sort_order.asc"
+  "/rest/v1/events?select=id,title,event_date,venue,city,description,image_path,sort_order&published=eq.true&order=event_date.asc.nullslast,sort_order.asc"
 );
 
 const galleryDir = path.join(process.cwd(), "public", "content", "gallery");
@@ -38,17 +38,7 @@ await fs.mkdir(galleryDir, { recursive: true });
 
 async function downloadStorageFile(storagePath) {
   const cleanPath = storagePath.replace(/^\//, "");
-  const signed = await supabase("/storage/v1/object/sign/gallery/" + cleanPath, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ expiresIn: 3600 }),
-  });
-
-  const signedPath = signed.signedURL;
-  const url = signedPath?.startsWith("http")
-    ? signedPath
-    : `${supabaseUrl}/storage/v1${signedPath}`;
-
+  const url = `${supabaseUrl}/storage/v1/object/public/gallery/${cleanPath}`;
   const response = await fetch(url);
   if (!response.ok) {
     throw new Error(`Could not download ${storagePath}: ${response.status}`);
@@ -69,9 +59,9 @@ for (const item of gallery) {
     number: publishedGallery.length + 1,
     src: localPath,
     full: localPath,
-    name: item.title || item.alt_text || "Gallery photograph",
+    name: item.title || "Gallery photograph",
     caption: item.caption || "",
-    year: item.year ?? undefined,
+    year: item.created_at ? new Date(item.created_at).getFullYear() : undefined,
   });
 }
 
@@ -94,7 +84,7 @@ export const eventItems: EventItem[] = ${json(
       id: event.id,
       title: event.title,
       date: event.event_date,
-      venue: event.venue,
+      venue: event.city ? `${event.venue} • ${event.city}` : event.venue,
       description: event.description,
       image: event.image_path
         ? `/content/gallery/${path.basename(event.image_path)}`
