@@ -1,7 +1,16 @@
 import { ArrowDownRight, ArrowUpRight, Play } from "lucide-react";
 import { galleryImages, siteContent } from "@/lib/content";
 
-const nav = ["ABOUT", "CLIENTS", "EVENTS", "MUSIC", "GALLERY", "BLOG", "CONTACT"];
+const nav = ["ABOUT", "CLIENTS", "EVENTS", "MUSIC", "GALLERY", "CONTACT"];
+
+const sectionHref: Record<string, string> = {
+  ABOUT: "#about",
+  CLIENTS: "#clients",
+  EVENTS: "#events",
+  MUSIC: "#music",
+  GALLERY: "#gallery",
+  CONTACT: "#contact",
+};
 
 export default function Home() {
   return (
@@ -12,9 +21,7 @@ export default function Home() {
         </a>
         <nav>
           {nav.map((item) => (
-            <a key={item} href={item === "GALLERY" ? "#gallery" : item === "MUSIC" ? "#music" : item === "EVENTS" ? "#events" : item === "CONTACT" ? "#contact" : "#about"}>
-              {item}
-            </a>
+            <a key={item} href={sectionHref[item]}>{item}</a>
           ))}
         </nav>
         <a className="header-cta" href="#contact">BOOK / CONTACT</a>
@@ -32,39 +39,40 @@ export default function Home() {
             <a className="button button-outline" href="#gallery">{siteContent.hero.secondaryCta} <ArrowDownRight size={16} /></a>
           </div>
         </div>
-        <div className="hero-index">001 / 2018 ARCHIVE</div>
+        <div className="hero-index">NYC • DJ • MUSIC • EVENTS</div>
       </section>
 
       <section id="about" className="intro-section section-grid">
         <div>
           <p className="section-kicker">01 / ABOUT</p>
-          <h2>THE<br /><span>ARCHIVE</span></h2>
+          <h2>THE<br /><span>DJ</span></h2>
         </div>
         <div className="intro-copy">
           <p>{siteContent.archive.body}</p>
           <div className="rule" />
-          <p className="small-copy">Recovered from the archived Sparky Griswold website and being rebuilt as a modern, content-first site.</p>
+          <ul className="highlight-list">
+            {siteContent.archive.highlights.map((item) => <li key={item}>{item}</li>)}
+          </ul>
         </div>
       </section>
 
-      <section id="gallery" className="gallery-section">
+      <section id="events" className="events-section">
         <div className="section-heading">
           <div>
-            <p className="section-kicker">02 / GALLERY</p>
-            <h2>FORTY<br /><span>MEMORIES</span></h2>
+            <p className="section-kicker">02 / EVENTS</p>
+            <h2>BUILT FOR<br /><span>THE ROOM</span></h2>
           </div>
-          <p className="section-note">THE ORIGINAL ARCHIVE</p>
+          <p className="section-note">WEDDINGS • CORPORATE • CLUBS • FESTIVALS</p>
         </div>
 
-        <div className="gallery-grid">
-          {galleryImages.map((image) => (
-            <a className="gallery-card" key={image.number} href={image.full}>
-              <img
-                src={image.src}
-                alt={`Sparky Griswold archive photograph ${image.number}`}
-              />
-              <span>{String(image.number).padStart(2, "0")}</span>
-            </a>
+        <div className="event-list">
+          {siteContent.services.map((service, index) => (
+            <div className="event-row service-row" key={service.title}>
+              <span>0{index + 1}</span>
+              <strong>{service.title}</strong>
+              <p>{service.body}</p>
+              <ArrowUpRight size={18} />
+            </div>
           ))}
         </div>
       </section>
@@ -80,7 +88,7 @@ export default function Home() {
 
         <div className="mix-list">
           {siteContent.mixes.map((mix, index) => (
-            <a className="mix-row" key={mix.title} href="#music">
+            <a className="mix-row" key={mix.title} href={mix.href} target="_blank" rel="noreferrer">
               <span>0{index + 1}</span>
               <strong>{mix.title}</strong>
               <em>{mix.meta}</em>
@@ -90,33 +98,63 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="events" className="events-section">
+      <section id="gallery" className="gallery-section">
         <div className="section-heading">
           <div>
-            <p className="section-kicker">04 / EVENTS</p>
-            <h2>EVENTS<br /><span>ARCHIVE</span></h2>
+            <p className="section-kicker">04 / GALLERY</p>
+            <h2>FORTY<br /><span>MEMORIES</span></h2>
           </div>
+          <p className="section-note">THE ORIGINAL PHOTO ARCHIVE</p>
         </div>
 
-        <div className="event-list">
-          {siteContent.events.map((event, index) => (
-            <div className="event-row" key={event.title}>
-              <span>0{index + 1}</span>
-              <strong>{event.title}</strong>
-              <span>{event.venue || "SPARKY GRISWOLD"}</span>
-              <ArrowUpRight size={18} />
-            </div>
+        <div className="gallery-grid">
+          {galleryImages.map((image) => (
+            <a className="gallery-card" key={image.number} href={image.full}>
+              <img src={image.src} alt={`Sparky Griswold archive photograph ${image.number}`} />
+              <span>{String(image.number).padStart(2, "0")}</span>
+            </a>
           ))}
+        </div>
+      </section>
+
+      <section id="clients" className="clients-section">
+        <div className="section-heading">
+          <div>
+            <p className="section-kicker">05 / CLIENTS</p>
+            <h2>TRUSTED<br /><span>BY</span></h2>
+          </div>
+          <p className="section-note">EVENTS • BRANDS • PRIVATE CLIENTS</p>
+        </div>
+
+        <div className="client-grid">
+          {siteContent.clients.map((client) => (
+            <article className="client-card" key={client.name}>
+              <p className="client-role">{client.role}</p>
+              <h3>{client.name}</h3>
+              <p>{client.body}</p>
+            </article>
+          ))}
+        </div>
+
+        <div className="venues-block">
+          <p className="section-kicker">SELECTED VENUES & EVENTS</p>
+          <div className="venue-list">
+            {siteContent.venues.map((venue) => <span key={venue}>{venue}</span>)}
+          </div>
         </div>
       </section>
 
       <section id="contact" className="contact-section">
         <div>
-          <p className="section-kicker">05 / CONTACT</p>
+          <p className="section-kicker">06 / CONTACT</p>
           <h2>LET'S<br /><span>CONNECT.</span></h2>
         </div>
         <div className="contact-side">
-          <p>CONTACT DETAILS, BOOKING INFORMATION AND THE RECOVERED CLIENT CONTENT WILL BE ADDED AS THE ARCHIVE REBUILD CONTINUES.</p>
+          <p>Ready to book Sparky for a wedding, corporate event, club night, festival or private celebration?</p>
+          <div className="contact-details">
+            <a href={"tel:" + siteContent.contact.phone}>{siteContent.contact.phone}</a>
+            <a href={"mailto:" + siteContent.contact.email}>{siteContent.contact.email}</a>
+          </div>
           <div className="social-row">
             <a href="https://instagram.com/sparkygriswold" target="_blank" rel="noreferrer">INSTAGRAM ↗</a>
             <a href="https://twitter.com/sparkygriswold" target="_blank" rel="noreferrer">TWITTER ↗</a>
@@ -128,7 +166,7 @@ export default function Home() {
       <footer>
         <span>© SPARKY GRISWOLD</span>
         <span>DJ • MUSIC • EVENTS</span>
-        <span>ARCHIVE REBUILD / 2026</span>
+        <span>NEW YORK</span>
       </footer>
     </main>
   );
