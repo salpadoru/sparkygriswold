@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { eventItems } from "@/lib/generatedEvents";
+import { formatEventDate } from "@/lib/events";
 
 export function generateStaticParams() {
   return eventItems.map((event) => ({ id: event.id }));
@@ -35,7 +36,7 @@ export default async function EventPage({
           <div className="event-detail-meta">
             <div>
               <span>DATE</span>
-              <strong>{event.date ?? "DATE TBC"}</strong>
+              <strong>{formatEventDate(event.date)}</strong>
             </div>
             <div>
               <span>VENUE</span>
