@@ -66,12 +66,16 @@ export default function Home() {
           <p className="section-note">TAILORED DJ EXPERIENCES</p>
         </div>
         <p className="services-intro">{siteContent.servicesIntro}</p>
-        <p className="events-intro">Experience across New York venues, private celebrations, corporate events, nightlife and major social occasions.</p>
-        <div className="venues-block events-venues">
-          <p className="section-kicker">SELECTED VENUES & EVENTS</p>
-          <div className="venue-list">
-            {siteContent.venues.map((venue) => <span key={venue}>{venue}</span>)}
-          </div>
+        <p className="events-intro">Featured event records are shown here now. This section is deliberately structured so it can later be powered by the admin-managed events database.</p>
+        <div className="event-list">
+          {siteContent.events.map((event, index) => (
+            <article className="event-row" key={event.title + event.date}>
+              <span>0{index + 1}</span>
+              <strong>{event.title}</strong>
+              <p>{event.date} • {event.venue}</p>
+              <ArrowUpRight size={18} />
+            </article>
+          ))}
         </div>
       </section>
 
