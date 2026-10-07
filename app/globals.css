@@ -909,3 +909,22 @@ footer {
   font-size: 13px;
   line-height: 1.55;
 }
+
+
+/* --- Services: remove navigation cue; these are descriptive rows --- */
+.services-section .service-row {
+  grid-template-columns: 70px minmax(260px, 1.05fr) minmax(320px, 1.4fr);
+}
+.services-section .service-row:hover {
+  background: transparent;
+}
+@media (max-width: 900px) {
+  .services-section .service-row {
+    grid-template-columns: 42px 1fr;
+    gap: 14px;
+  }
+  .services-section .service-row p {
+    grid-column: 2;
+    grid-row: 2;
+  }
+}
