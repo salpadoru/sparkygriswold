@@ -45,6 +45,23 @@ export const siteContent = {
       body: "High-energy performances for nightclubs, music festivals and large-scale events.",
     },
   ] satisfies ServiceItem[],
+  events: [
+    {
+      title: "SPARKY SATURDAYS",
+      date: "JAN 17 • 10 P.M.",
+      venue: "9A NYC",
+    },
+    {
+      title: "SPARKY FRIDAY",
+      date: "JUL 18 • 10 P.M.",
+      venue: "NORWOOD CLUB",
+    },
+    {
+      title: "SPARKY GRISWOLD",
+      date: "AUG 16 • 12 P.M.",
+      venue: "WHITE PLAINS",
+    },
+  ],
   mixes: [
     {
       title: "SPARKY GRISWOLD ON MIXCLOUD",
