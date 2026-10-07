@@ -22,7 +22,7 @@ export default function Home() {
 
           <div className="placeholder-social">
             <a href="https://instagram.com/sparkygriswold" target="_blank" rel="noreferrer">INSTAGRAM</a>
-            <a href="https://www.youtube.com/channel/UC35VgUHjggiefJFCCfNVxJw" target="_blank" rel="noreferrer">YOUTUBE</a>
+            <a href="https://www.mixcloud.com/SparkyGriswold/" target="_blank" rel="noreferrer">MIXCLOUD</a>
           </div>
         </section>
       </div>
