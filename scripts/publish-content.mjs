@@ -26,7 +26,7 @@ async function supabase(pathname, options = {}) {
 }
 
 const gallery = await supabase(
-  "/rest/v1/gallery?select=id,title,image_path,caption,sort_order,created_at&published=eq.true&order=sort_order.asc,created_at.asc"
+  "/rest/v1/gallery?select=id,title,image_path,caption,year,sort_order,created_at&published=eq.true&order=sort_order.asc,created_at.asc"
 );
 const events = await supabase(
   "/rest/v1/events?select=id,title,event_date,venue,city,description,image_path,sort_order&published=eq.true&order=event_date.asc.nullslast,sort_order.asc"
@@ -61,7 +61,7 @@ for (const item of gallery) {
     full: localPath,
     name: item.title || "Gallery photograph",
     caption: item.caption || "",
-    year: item.created_at ? new Date(item.created_at).getFullYear() : undefined,
+    year: item.year ?? (item.created_at ? new Date(item.created_at).getFullYear() : undefined),
   });
 }
 
