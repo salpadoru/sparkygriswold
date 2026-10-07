@@ -117,15 +117,18 @@ export default function Home() {
 
         <div className="event-list">
           {eventItems.map((event, index) => (
-            <div className="event-row" key={event.id}>
+            <a className="event-row event-link" key={event.id} href={`/events/${event.id}`}>
               <span>0{index + 1}</span>
               <strong>{event.title}</strong>
               <div className="event-meta">
                 <span>{event.date ?? "DATE TBC"}</span>
                 <span>{event.venue}</span>
               </div>
-              <ArrowUpRight size={18} />
-            </div>
+              <div className="event-action">
+                <small>VIEW EVENT</small>
+                <ArrowUpRight size={19} />
+              </div>
+            </a>
           ))}
         </div>
       </section>
