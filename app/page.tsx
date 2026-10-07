@@ -117,16 +117,27 @@ export default function Home() {
         </div>
 
         <div className="event-list">
+          <div className="event-list-head">
+            <span>EVENTS</span>
+            <span>DATE</span>
+            <span>VENUE</span>
+            <span>DETAILS</span>
+          </div>
+
           {eventItems.map((event, index) => (
             <a className="event-row event-link" key={event.id} href={`/events/${event.id}`}>
-              <span>0{index + 1}</span>
+              <div className="event-number">EVENT {String(index + 1).padStart(2, "0")}</div>
               <strong>{event.title}</strong>
-              <div className="event-meta">
+              <div className="event-field">
+                <small>DATE</small>
                 <span>{formatEventDate(event.date)}</span>
+              </div>
+              <div className="event-field">
+                <small>VENUE</small>
                 <span>{event.venue}</span>
               </div>
               <div className="event-action">
-                <small>VIEW EVENT</small>
+                <span>VIEW EVENT</span>
                 <ArrowUpRight size={19} />
               </div>
             </a>
