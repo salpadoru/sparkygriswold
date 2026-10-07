@@ -13,7 +13,7 @@ type GalleryItem = {
 };
 type EventItem = {
   id: string; title: string; venue: string; city: string;
-  event_date: string | null; description: string; published: boolean;
+  event_date: string | null; description: string; external_url: string | null; published: boolean;
   sort_order: number;
 };
 
@@ -36,6 +36,7 @@ export default function AdminPage() {
   const [eventVenue, setEventVenue] = useState("");
   const [eventCity, setEventCity] = useState("");
   const [eventDescription, setEventDescription] = useState("");
+  const [eventExternalUrl, setEventExternalUrl] = useState("");
 
   useEffect(() => {
     if (!supabase) { setReady(true); return; }
@@ -59,7 +60,7 @@ export default function AdminPage() {
     const [admin, g, e] = await Promise.all([
       supabase.from("admin_users").select("user_id").eq("user_id", session.user.id).maybeSingle(),
       supabase.from("gallery").select("id,title,caption,image_path,published,sort_order").order("sort_order"),
-      supabase.from("events").select("id,title,venue,city,event_date,description,published,sort_order").order("event_date", { ascending: true }),
+      supabase.from("events").select("id,title,venue,city,event_date,description,external_url,published,sort_order").order("event_date", { ascending: true }),
     ]);
     setAuthorized(Boolean(admin.data));
     setGallery(g.data ?? []);
@@ -104,11 +105,12 @@ export default function AdminPage() {
     setBusy(true);
     const result = await supabase.from("events").insert({
       title: eventTitle, event_date: eventDate || null, venue: eventVenue,
-      city: eventCity, description: eventDescription, sort_order: events.length, published: true
+      city: eventCity, description: eventDescription, external_url: eventExternalUrl || null,
+      sort_order: events.length, published: true
     });
     if (result.error) setMessage(result.error.message);
     else {
-      setEventTitle(""); setEventDate(""); setEventVenue(""); setEventCity(""); setEventDescription("");
+      setEventTitle(""); setEventDate(""); setEventVenue(""); setEventCity(""); setEventDescription(""); setEventExternalUrl("");
       await loadContent();
       setMessage("Event saved. Run GitHub Actions → Publish Content to update the public site.");
     }
@@ -196,6 +198,7 @@ export default function AdminPage() {
           <label>Venue<input value={eventVenue} onChange={e => setEventVenue(e.target.value)} /></label>
           <label>City<input value={eventCity} onChange={e => setEventCity(e.target.value)} /></label>
           <label>Description<textarea rows={4} value={eventDescription} onChange={e => setEventDescription(e.target.value)} /></label>
+          <label>Event / Ticket URL<input type="url" placeholder="https://…" value={eventExternalUrl} onChange={e => setEventExternalUrl(e.target.value)} /></label>
           <button disabled={busy}>SAVE EVENT</button>
         </form>
         <div className="admin-list">{events.map(item => <article className="admin-row" key={item.id}>
