@@ -1,9 +1,9 @@
 # CI build diagnostics
 
-Commit: 9969a9b9f0c396c5ce08787810d19ce587c459a6
+Commit: ddd1e085c0a19e123923608c07b6cb2ee6ac2382
 
 ▲ Next.js 16.3.8 (webpack)
-✓ Running next.config.ts took 31ms
+✓ Running next.config.ts took 19ms
 ⚠ No build cache found. Please configure build caching for faster rebuilds. Read more: https://nextjs.org/docs/messages/no-cache
 Attention: Next.js now collects completely anonymous telemetry regarding usage.
 This information is used to shape Next.js' roadmap and prioritize features.
@@ -12,7 +12,7 @@ https://nextjs.org/telemetry
 
 
   Creating an optimized production build ...
-✓ Compiled successfully in 4.9s
+✓ Compiled successfully in 3.1s
   Running TypeScript ...
 
   We detected TypeScript in your project and reconfigured your tsconfig.json file for you.
