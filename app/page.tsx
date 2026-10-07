@@ -56,71 +56,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="events" className="events-section">
-        <div className="section-heading">
-          <div>
-            <p className="section-kicker">02 / EVENTS</p>
-            <h2>BUILT FOR<br /><span>THE ROOM</span></h2>
-          </div>
-          <p className="section-note">WEDDINGS • CORPORATE • CLUBS • FESTIVALS</p>
-        </div>
-
-        <div className="event-list">
-          {siteContent.services.map((service, index) => (
-            <div className="event-row service-row" key={service.title}>
-              <span>0{index + 1}</span>
-              <strong>{service.title}</strong>
-              <p>{service.body}</p>
-              <ArrowUpRight size={18} />
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section id="music" className="music-section">
-        <div className="section-heading">
-          <div>
-            <p className="section-kicker">03 / MUSIC</p>
-            <h2>LISTEN<br /><span>BACK</span></h2>
-          </div>
-          <Play size={44} strokeWidth={1} />
-        </div>
-
-        <div className="mix-list">
-          {siteContent.mixes.map((mix, index) => (
-            <a className="mix-row" key={mix.title} href={mix.href} target="_blank" rel="noreferrer">
-              <span>0{index + 1}</span>
-              <strong>{mix.title}</strong>
-              <em>{mix.meta}</em>
-              <ArrowUpRight size={20} />
-            </a>
-          ))}
-        </div>
-      </section>
-
-      <section id="gallery" className="gallery-section">
-        <div className="section-heading">
-          <div>
-            <p className="section-kicker">04 / GALLERY</p>
-            <h2>FORTY<br /><span>MEMORIES</span></h2>
-          </div>
-          <p className="section-note">THE ORIGINAL PHOTO ARCHIVE</p>
-        </div>
-
-        <div className="gallery-grid">
-          {galleryImages.map((image) => (
-            <a className="gallery-card" key={image.number} href={image.full}>
-              <img src={image.src} alt={`Sparky Griswold archive photograph ${image.number}`} />
-              <span>{String(image.number).padStart(2, "0")}</span>
-            </a>
-          ))}
-        </div>
-      </section>
-
       <section id="clients" className="clients-section">
         <div className="section-heading">
           <div>
-            <p className="section-kicker">05 / CLIENTS</p>
+            <p className="section-kicker">02 / CLIENTS</p>
             <h2>TRUSTED<br /><span>BY</span></h2>
           </div>
           <p className="section-note">EVENTS • BRANDS • PRIVATE CLIENTS</p>
@@ -144,21 +83,83 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="events" className="events-section">
+        <div className="section-heading">
+          <div>
+            <p className="section-kicker">03 / EVENTS</p>
+            <h2>BUILT FOR<br /><span>THE ROOM</span></h2>
+          </div>
+          <p className="section-note">WEDDINGS • CORPORATE • CLUBS • FESTIVALS</p>
+        </div>
+
+        <div className="event-list">
+          {siteContent.services.map((service, index) => (
+            <div className="event-row service-row" key={service.title}>
+              <span>0{index + 1}</span>
+              <strong>{service.title}</strong>
+              <p>{service.body}</p>
+              <ArrowUpRight size={18} />
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="music" className="music-section">
+        <div className="section-heading">
+          <div>
+            <p className="section-kicker">04 / MUSIC</p>
+            <h2>LISTEN<br /><span>BACK</span></h2>
+          </div>
+          <Play size={44} strokeWidth={1} />
+        </div>
+
+        <div className="mix-list">
+          {siteContent.mixes.map((mix, index) => (
+            <a className="mix-row" key={mix.title} href={mix.href} target="_blank" rel="noreferrer">
+              <span>0{index + 1}</span>
+              <strong>{mix.title}</strong>
+              <em>{mix.meta}</em>
+              <ArrowUpRight size={20} />
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section id="gallery" className="gallery-section">
+        <div className="section-heading">
+          <div>
+            <p className="section-kicker">05 / GALLERY</p>
+            <h2>FORTY<br /><span>MEMORIES</span></h2>
+          </div>
+          <p className="section-note">THE ORIGINAL PHOTO ARCHIVE</p>
+        </div>
+
+        <div className="gallery-grid">
+          {galleryImages.map((image) => (
+            <a className="gallery-card" key={image.number} href={image.full}>
+              <img src={image.src} alt={`Sparky Griswold archive photograph ${image.number}`} />
+              <span>{String(image.number).padStart(2, "0")}</span>
+            </a>
+          ))}
+        </div>
+      </section>
+
       <section id="contact" className="contact-section">
         <div>
           <p className="section-kicker">06 / CONTACT</p>
           <h2>LET'S<br /><span>CONNECT.</span></h2>
         </div>
         <div className="contact-side">
-          <p>Ready to book Sparky for a wedding, corporate event, club night, festival or private celebration?</p>
+          <p>Ready to book Sparky for a wedding, corporate event, club night, festival or private celebration? Get in touch to check availability and request a quote.</p>
           <div className="contact-details">
             <a href={"tel:" + siteContent.contact.phone}>{siteContent.contact.phone}</a>
             <a href={"mailto:" + siteContent.contact.email}>{siteContent.contact.email}</a>
           </div>
           <div className="social-row">
-            <a href="https://instagram.com/sparkygriswold" target="_blank" rel="noreferrer">INSTAGRAM ↗</a>
-            <a href="https://twitter.com/sparkygriswold" target="_blank" rel="noreferrer">TWITTER ↗</a>
-            <a href="https://www.youtube.com/channel/UC35VgUHjggiefJFCCfNVxJw" target="_blank" rel="noreferrer">YOUTUBE ↗</a>
+            <a href={siteContent.social.mixcloud} target="_blank" rel="noreferrer">MIXCLOUD ↗</a>
+            <a href={siteContent.social.instagram} target="_blank" rel="noreferrer">INSTAGRAM ↗</a>
+            <a href={siteContent.social.x} target="_blank" rel="noreferrer">X ↗</a>
+            <a href={siteContent.social.youtube} target="_blank" rel="noreferrer">YOUTUBE ↗</a>
           </div>
         </div>
       </section>
