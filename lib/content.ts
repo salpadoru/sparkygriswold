@@ -5,13 +5,7 @@ export type EventItem = {
   city: string;
 };
 
-export const galleryImages = Array.from({ length: 40 }, (_, index) => index + 1).map(
-  (number) => ({
-    number,
-    src: `/archive/${number}-150x150.jpg`,
-    full: `/archive/${number}.jpg`,
-  })
-);
+export { galleryImages } from "./generatedGallery";
 
 export const siteContent = {
   hero: {
