@@ -477,3 +477,70 @@ footer { display: flex; justify-content: space-between; gap: 20px; padding: 25px
     font-size: 1rem;
   }
 }
+
+
+/* --- Header + readability refinement --- */
+.site-header {
+  height: 124px;
+  padding: 16px 4vw;
+}
+.brand {
+  width: 94px;
+  height: 94px;
+}
+.site-header nav {
+  gap: 32px;
+}
+.site-header nav a,
+.header-cta {
+  font-size: 12px;
+  letter-spacing: .16em;
+}
+.header-cta {
+  padding: 13px 17px;
+}
+.eyebrow,
+.section-kicker {
+  font-size: 12px;
+}
+.hero-index {
+  font-size: 10px;
+}
+.small-copy,
+.section-note {
+  font-size: 13px;
+  line-height: 1.7;
+}
+.highlight-list li {
+  font-size: 13px;
+}
+.service-row > span {
+  font-size: 11px;
+}
+.service-row p {
+  font-size: 13px;
+}
+.services-section .section-note {
+  font-size: 12px;
+}
+.services-section .service-row p {
+  font-size: 13px;
+}
+.event-meta {
+  font-size: 10px;
+}
+.gallery-label {
+  font-size: 10px;
+}
+footer {
+  font-size: 10px;
+}
+@media (max-width: 900px) {
+  .site-header {
+    height: 94px;
+  }
+  .brand {
+    width: 72px;
+    height: 72px;
+  }
+}
