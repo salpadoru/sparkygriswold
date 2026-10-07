@@ -30,6 +30,7 @@ export const siteContent = {
       "High-profile clients and celebrity events",
     ],
   },
+  servicesIntro: "Tailored DJ experiences for any event, delivering exceptional music selection and professional performance to create the perfect atmosphere.",
   services: [
     {
       title: "WEDDING DJ",
