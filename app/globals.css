@@ -33,7 +33,7 @@ a { color: inherit; text-decoration: none; }
 }
 .hero-image {
   position: absolute; inset: 0; z-index: -3;
-  background-image: url("/images/uploads/2016/01/03.jpg");
+  background-image: url("/images/uploads/2015/04/3.jpg");
   background-size: cover; background-position: center;
   filter: grayscale(100%) contrast(1.15); transform: scale(1.05);
 }
