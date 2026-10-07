@@ -29,7 +29,7 @@ const gallery = await supabase(
   "/rest/v1/gallery?select=id,title,image_path,caption,year,sort_order,created_at&published=eq.true&order=sort_order.asc,created_at.asc"
 );
 const events = await supabase(
-  "/rest/v1/events?select=id,title,event_date,venue,city,description,image_path,sort_order&published=eq.true&order=event_date.asc.nullslast,sort_order.asc"
+  "/rest/v1/events?select=id,title,event_date,venue,city,description,image_path,external_url,sort_order&published=eq.true&order=event_date.asc.nullslast,sort_order.asc"
 );
 
 const galleryDir = path.join(process.cwd(), "public", "content", "gallery");
