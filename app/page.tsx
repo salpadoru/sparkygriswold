@@ -25,7 +25,7 @@ export default function Home() {
     <main className="site-shell">
       <header className="site-header">
         <a href="#" className="brand" aria-label="Sparky Griswold home">
-          <img src="/archive/logo.png" alt="Sparky Griswold" />
+          <img src="https://sparkygriswold.com/wp-content/uploads/2025/05/sparky-logo-removed.png" alt="Sparky Griswold" />
         </a>
         <nav className="desktop-nav">
           {nav.map((item) => (
