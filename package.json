@@ -6,7 +6,7 @@
     "node": "22.x"
   },
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --webpack",
     "build": "npm install && next build --webpack",
     "start": "next start",
     "lint": "next lint",
@@ -19,9 +19,7 @@
     "lucide-react": "latest",
     "tailwindcss": "latest",
     "@tailwindcss/postcss": "latest",
-    "@supabase/supabase-js": "latest"
-  },
-  "devDependencies": {
+    "@supabase/supabase-js": "latest",
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
