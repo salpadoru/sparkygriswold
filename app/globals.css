@@ -33,7 +33,7 @@ a { color: inherit; text-decoration: none; }
 }
 .hero-image {
   position: absolute; inset: 0; z-index: -3;
-  background-image: url("https://sparkygriswold.com/wp-content/uploads/2015/04/3.jpg");
+  background-image: url("https://sparkygriswold.com/wp-content/uploads/2025/05/1-2048x1536.jpg");
   background-size: cover; background-position: center;
   filter: grayscale(100%) contrast(1.15); transform: scale(1.05);
 }
@@ -106,6 +106,10 @@ h2 span { color: var(--red); }
   font-weight: 800;
   letter-spacing: .15em;
 }
+.event-title-cell { display: flex; align-items: center; gap: 18px; min-width: 0; }
+.event-thumb { width: 72px; height: 58px; flex: 0 0 72px; object-fit: cover; filter: grayscale(100%); border: 1px solid rgba(255,255,255,.12); }
+.event-link:hover .event-thumb { filter: grayscale(0); }
+
 .event-row strong {
   font-size: clamp(1.45rem, 2.2vw, 2.1rem);
   line-height: 1;
@@ -186,7 +190,8 @@ footer { display: flex; justify-content: space-between; gap: 20px; padding: 25px
     padding: 16px 10px;
   }
   .event-number { grid-column: 1; grid-row: 1 / 4; align-self: start; padding-top: 4px; }
-  .event-row strong { grid-column: 2; grid-row: 1; }
+  .event-title-cell { grid-column: 2; grid-row: 1; }
+  .event-row strong { grid-column: auto; grid-row: auto; }
   .event-field { grid-column: 2; display: flex; gap: 8px; align-items: baseline; }
   .event-field small { display: none; }
   .event-field span { font-size: 10px; }
