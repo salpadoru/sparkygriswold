@@ -149,16 +149,6 @@ export default function Home() {
           <Play size={44} strokeWidth={1} />
         </div>
 
-        <div className="music-home-images">
-          {[
-            "https://sparkygriswold.com/wp-content/uploads/2015/04/19.jpg",
-            "https://sparkygriswold.com/wp-content/uploads/2015/04/21.jpg",
-            "https://sparkygriswold.com/wp-content/uploads/2015/04/16.jpg",
-          ].map((src, index) => (
-            <img key={src} src={src} alt={`Sparky Griswold archive photograph ${index + 1}`} />
-          ))}
-        </div>
-
         <div className="mix-list">
           {siteContent.mixes.map((mix, index) => (
             <a className="mix-row" key={mix.title} href={mix.href} target="_blank" rel="noreferrer">
