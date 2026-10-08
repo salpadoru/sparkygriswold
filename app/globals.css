@@ -1522,3 +1522,47 @@ footer { font-size: 10px; }
     color: var(--red);
   }
 }
+
+
+/* --- Mobile menu visibility fix --- */
+@media (max-width: 900px) {
+  .site-header .mobile-nav {
+    display: grid !important;
+    position: absolute;
+    top: 112px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-height: calc(100vh - 112px);
+    overflow-y: auto;
+    background: rgba(8,8,8,.98);
+    border-top: 1px solid rgba(255,255,255,.16);
+    border-bottom: 1px solid rgba(255,255,255,.16);
+    z-index: 30;
+  }
+
+  .site-header .mobile-nav a {
+    display: block;
+    padding: 19px 5vw;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+    color: var(--cream);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .18em;
+  }
+
+  .site-header .mobile-nav a:hover {
+    color: var(--red);
+  }
+
+  .mobile-menu-button {
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+  }
+
+  .mobile-menu-button:focus-visible {
+    outline: 2px solid var(--red);
+    outline-offset: 2px;
+  }
+}
