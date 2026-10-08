@@ -36,7 +36,6 @@ export default function Home() {
         <div className="hero-content">
           <p className="eyebrow">{siteContent.hero.eyebrow}</p>
           <h1>{siteContent.hero.title}</h1>
-          <p className="hero-copy">{siteContent.hero.body}</p>
           <div className="hero-actions">
             <a className="button button-solid" href="#contact">{siteContent.hero.primaryCta} <ArrowUpRight size={16} /></a>
             <a className="button button-outline" href="#gallery">{siteContent.hero.secondaryCta} <ArrowDownRight size={16} /></a>
