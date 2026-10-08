@@ -1466,3 +1466,59 @@ footer { font-size: 10px; }
   font-size: 11px;
   letter-spacing: .08em;
 }
+
+
+/* --- Mobile header: larger logo + accessible menu --- */
+.mobile-menu-button {
+  display: none;
+  border: 0;
+  background: transparent;
+  color: var(--cream);
+  padding: 8px;
+  cursor: pointer;
+  position: relative;
+  z-index: 31;
+}
+.mobile-nav {
+  display: none;
+}
+@media (max-width: 900px) {
+  .site-header {
+    height: 112px;
+    padding: 12px 5vw;
+    align-items: center;
+  }
+  .brand {
+    width: 96px;
+    height: 96px;
+  }
+  .desktop-nav,
+  .site-header .header-cta {
+    display: none;
+  }
+  .mobile-menu-button {
+    display: block;
+  }
+  .mobile-nav {
+    position: absolute;
+    top: 112px;
+    left: 0;
+    right: 0;
+    display: grid;
+    gap: 0;
+    background: rgba(8,8,8,.98);
+    border-top: 1px solid rgba(255,255,255,.16);
+    border-bottom: 1px solid rgba(255,255,255,.16);
+    z-index: 30;
+  }
+  .mobile-nav a {
+    padding: 18px 5vw;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .18em;
+  }
+  .mobile-nav a:hover {
+    color: var(--red);
+  }
+}
