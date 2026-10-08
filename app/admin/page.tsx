@@ -2,7 +2,7 @@
 
 import { FormEvent, useEffect, useState } from "react";
 import { createClient, type Session } from "@supabase/supabase-js";
-import { galleryImages } from "@/lib/generatedGallery";
+import { galleryImages } from "../../lib/generatedGallery";
 
 const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const key = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
