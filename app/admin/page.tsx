@@ -1,24 +1,19 @@
 "use client";
+import { FormEvent, useEffect, useState } from "react";
+import { createClient, type Session, type SupabaseClient } from "@supabase/supabase-js";
+import { galleryImages } from "../../lib/generatedGallery";
 
-import { useEffect, useState } from "react";
-
-export default function AdminPage() {
-  const [status, setStatus] = useState("CHECKING ADMIN CONFIGURATION…");
-
-  useEffect(() => {
-    fetch("/api/admin-config", { cache: "no-store" })
-      .then(r => r.json())
-      .then(c => setStatus(c.url && c.key ? "SUPABASE CONFIGURATION FOUND" : "SUPABASE NOT CONFIGURED"))
-      .catch(() => setStatus("UNABLE TO READ ADMIN CONFIGURATION"));
-  }, []);
-
-  return (
-    <main className="admin-page">
-      <div className="admin-card">
-        <p className="admin-kicker">SPARKY GRISWOLD / ADMIN</p>
-        <h1>{status}</h1>
-        <p>Admin configuration is now read at runtime from the Preview server.</p>
-      </div>
-    </main>
-  );
+type Item={id:string;title:string;caption?:string;image_path?:string;published:boolean;sort_order:number};
+export default function AdminPage(){
+ const [supabase,setSupabase]=useState<SupabaseClient|null>(null),[session,setSession]=useState<Session|null>(null),[ready,setReady]=useState(false),[authorized,setAuthorized]=useState(false),[tab,setTab]=useState<"gallery"|"events">("gallery"),[gallery,setGallery]=useState<Item[]>([]),[events,setEvents]=useState<any[]>([]),[message,setMessage]=useState(""),[email,setEmail]=useState(""),[password,setPassword]=useState(""),[busy,setBusy]=useState(false);
+ useEffect(()=>{fetch("/api/admin-config",{cache:"no-store"}).then(r=>r.json()).then(c=>{if(c.url&&c.key)setSupabase(createClient(c.url,c.key));}).finally(()=>setReady(true));},[]);
+ useEffect(()=>{if(!supabase)return; supabase.auth.getSession().then(({data})=>setSession(data.session)); const {data}=supabase.auth.onAuthStateChange((_e,s)=>{setSession(s);if(!s)setAuthorized(false)});return()=>data.subscription.unsubscribe()},[supabase]);
+ useEffect(()=>{if(session)load()},[session]);
+ async function load(){if(!supabase||!session)return;const [a,g,e]=await Promise.all([supabase.from("admin_users").select("user_id").eq("user_id",session.user.id).maybeSingle(),supabase.from("gallery").select("*").order("sort_order"),supabase.from("events").select("*").order("event_date",{ascending:true})]);setAuthorized(!!a.data);setGallery(g.data||[]);setEvents(e.data||[]);setMessage(g.error?.message||e.error?.message||"")}
+ async function login(e:FormEvent){e.preventDefault();if(!supabase)return;setBusy(true);const {error}=await supabase.auth.signInWithPassword({email,password});setMessage(error?.message||"");setBusy(false)}
+ if(!ready)return <main className="admin-page"><p>Loading…</p></main>;
+ if(!supabase)return <main className="admin-page"><div className="admin-card"><p className="admin-kicker">SPARKY GRISWOLD / ADMIN</p><h1>SUPABASE NOT CONFIGURED</h1></div></main>;
+ if(!session)return <main className="admin-page"><form className="admin-card admin-form" onSubmit={login}><p className="admin-kicker">SPARKY GRISWOLD / ADMIN</p><h1>CONTENT LOGIN</h1><label>Email<input type="email" value={email} onChange={e=>setEmail(e.target.value)} required/></label><label>Password<input type="password" value={password} onChange={e=>setPassword(e.target.value)} required/></label><button disabled={busy}>{busy?"SIGNING IN…":"SIGN IN"}</button>{message&&<p className="admin-message">{message}</p>}</form></main>;
+ if(!authorized)return <main className="admin-page"><div className="admin-card"><p className="admin-kicker">SPARKY GRISWOLD / ADMIN</p><h1>NOT AUTHORISED</h1><p>Your Supabase account is not listed in admin_users.</p><button onClick={()=>supabase.auth.signOut()}>SIGN OUT</button></div></main>;
+ return <main className="admin-page"><header className="admin-header"><div><p className="admin-kicker">SPARKY GRISWOLD / ADMIN</p><h1>CONTENT MANAGER</h1></div><button onClick={()=>supabase.auth.signOut()}>SIGN OUT</button></header><div className="admin-tabs"><button className={tab==="gallery"?"active":""} onClick={()=>setTab("gallery")}>GALLERY</button><button className={tab==="events"?"active":""} onClick={()=>setTab("events")}>EVENTS</button></div>{message&&<div className="admin-notice">{message}</div>}<section className="admin-section"><div className="admin-card"><h2>{tab==="gallery"?"GALLERY":"EVENTS"}</h2><p>{tab==="gallery"?gallery.length+" uploaded images":events.length+" events"}</p>{tab==="gallery"&&gallery.length===0&&galleryImages.length>0&&<div className="admin-gallery-empty-state"><strong>THE CURRENT PUBLIC GALLERY IS STILL IN GITHUB</strong><span>{galleryImages.length} archive images are in the public-site snapshot.</span><span>Run GitHub Actions → Import Gallery Snapshot.</span></div>}{tab==="gallery"&&gallery.map(i=><article className="admin-row" key={i.id}><strong>{i.title||"Untitled photo"}</strong><span>{i.published?"PUBLISHED":"HIDDEN"}</span></article>)}{tab==="events"&&events.map(i=><article className="admin-row" key={i.id}><strong>{i.title}</strong><span>{i.published?"PUBLISHED":"HIDDEN"}</span></article>)}</div></section></main>;
 }
