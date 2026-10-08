@@ -1210,3 +1210,49 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
+/* --- Music page: old-site Mixcloud card layout --- */
+.music-card-grid {
+  width: min(1320px, 90vw);
+  margin: 0 auto;
+  padding-bottom: 120px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+.music-card-grid .music-feed-card {
+  border: 0;
+  padding: 0;
+  min-width: 0;
+}
+.music-card-grid .music-player {
+  border-radius: 14px;
+  overflow: hidden;
+  background: #111;
+}
+.music-card-grid .music-player iframe {
+  height: 520px;
+}
+.music-listen-all {
+  grid-column: 1 / -1;
+  justify-self: center;
+  margin-top: 12px;
+  border: 2px solid var(--red);
+  padding: 14px 28px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .14em;
+}
+.music-listen-all:hover {
+  background: var(--red);
+  color: var(--cream);
+}
+@media (max-width: 900px) {
+  .music-card-grid {
+    grid-template-columns: 1fr;
+    max-width: 620px;
+  }
+  .music-listen-all {
+    grid-column: auto;
+  }
+}
