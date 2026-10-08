@@ -444,11 +444,6 @@ footer { display: flex; justify-content: space-between; gap: 20px; padding: 25px
 .intro-section > div:first-child {
   padding-top: 2px;
 }
-.intro-section h2 {
-  font-size: clamp(5.2rem, 7.2vw, 8.2rem);
-  letter-spacing: -.065em;
-  line-height: .78;
-}
 .intro-copy {
   padding-top: 18px;
   max-width: 720px;
@@ -1399,4 +1394,13 @@ footer {
   height: 4px;
   margin: 32px auto 0;
   background: var(--red);
+}
+
+
+/* --- About description: reduce body display size --- */
+.intro-copy > p:first-child {
+  font-size: clamp(1.1rem, 1.55vw, 1.5rem);
+  line-height: 1.28;
+  letter-spacing: -.01em;
+  max-width: 690px;
 }
