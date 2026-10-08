@@ -5,7 +5,7 @@ const path = require("path");
 const next = require("next");
 
 const dev = process.env.NODE_ENV !== "production";
-const hostname = process.env.HOSTNAME || "127.0.0.1";
+const hostname = "127.0.0.1";
 const port = Number(process.env.PORT) || 3000;
 
 const app = next({ dev, hostname, port });
@@ -32,9 +32,10 @@ function serveStatic(req, res) {
   if (!req.url || !req.url.startsWith("/_next/static/")) return false;
 
   const relativePath = decodeURIComponent(req.url.split("?")[0]).replace(/^\/_next\//, "");
-  const filePath = path.join(__dirname, ".next", relativePath);
+  const root = path.join(__dirname, ".next");
+  const filePath = path.join(root, relativePath);
 
-  if (!filePath.startsWith(path.join(__dirname, ".next") + path.sep)) {
+  if (!filePath.startsWith(root + path.sep)) {
     res.statusCode = 403;
     res.end("Forbidden");
     return true;
@@ -48,7 +49,10 @@ function serveStatic(req, res) {
     res.statusCode = 200;
     res.setHeader("Content-Type", type);
     res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
-    fs.createReadStream(filePath).pipe(res);
+    fs.createReadStream(filePath).on("error", () => {
+      if (!res.headersSent) res.statusCode = 500;
+      res.end();
+    }).pipe(res);
     return true;
   } catch {
     return false;
@@ -70,4 +74,7 @@ app.prepare().then(() => {
   }).listen(port, hostname, () => {
     console.log("> Sparky Griswold ready");
   });
+}).catch((error) => {
+  console.error("Failed to start Sparky Griswold:", error);
+  process.exit(1);
 });
