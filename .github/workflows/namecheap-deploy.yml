@@ -26,6 +26,10 @@ jobs:
           cp -R .next/static namecheap-deploy/.next/static
           cp -R public namecheap-deploy/public
 
+          # Use the repository server so /_next/static assets are served
+          # explicitly when the app runs behind cPanel/LiteSpeed.
+          cp server.js namecheap-deploy/server.js
+
       - name: Create Namecheap deployment package
         run: |
           cd namecheap-deploy
