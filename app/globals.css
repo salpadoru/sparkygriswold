@@ -1566,3 +1566,22 @@ footer { font-size: 10px; }
     outline-offset: 2px;
   }
 }
+
+
+/* --- Mobile clients: stack testimonials vertically --- */
+@media (max-width: 900px) {
+  .client-grid {
+    grid-template-columns: 1fr !important;
+    width: 100%;
+  }
+
+  .client-card,
+  .client-image-tile {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .client-image-tile {
+    aspect-ratio: 16 / 9;
+  }
+}
