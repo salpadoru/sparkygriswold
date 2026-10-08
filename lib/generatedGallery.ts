@@ -42,7 +42,6 @@ export const galleryImages: GalleryImage[] = [
   { number: 39, src: "https://sparkygriswold.com/wp-content/uploads/2015/04/8.jpg", full: "https://sparkygriswold.com/wp-content/uploads/2015/04/8.jpg", name: "Archive image", year: 2015 },
   { number: 40, src: "https://sparkygriswold.com/wp-content/uploads/2015/04/9.jpg", full: "https://sparkygriswold.com/wp-content/uploads/2015/04/9.jpg", name: "Archive image", year: 2015 },
   { number: 41, src: "https://sparkygriswold.com/wp-content/uploads/2015/06/10-NM.jpg", full: "https://sparkygriswold.com/wp-content/uploads/2015/06/10-NM.jpg", name: "Archive image", year: 2015 },
-  { number: 42, src: "https://sparkygriswold.com/wp-content/uploads/2015/06/SparkyGriswoldProfilePhoto.jpg", full: "https://sparkygriswold.com/wp-content/uploads/2015/06/SparkyGriswoldProfilePhoto.jpg", name: "Archive image", year: 2015 },
   { number: 43, src: "https://sparkygriswold.com/wp-content/uploads/2025/05/6-1-scaled.jpg", full: "https://sparkygriswold.com/wp-content/uploads/2025/05/6-1-scaled.jpg", name: "Live event", year: 2025 },
   { number: 44, src: "https://sparkygriswold.com/wp-content/uploads/2025/05/34-1-scaled.jpg", full: "https://sparkygriswold.com/wp-content/uploads/2025/05/34-1-scaled.jpg", name: "Live event", year: 2025 },
   { number: 45, src: "https://sparkygriswold.com/wp-content/uploads/2025/05/37-scaled.jpg", full: "https://sparkygriswold.com/wp-content/uploads/2025/05/37-scaled.jpg", name: "Live event", year: 2025 },
