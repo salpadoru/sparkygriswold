@@ -1374,3 +1374,29 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
+
+/* --- Music page: match old Mixcloud presentation --- */
+.music-page-title {
+  width: min(1320px, 90vw);
+  margin: 0 auto 60px;
+  text-align: center;
+}
+.music-page-title h1 {
+  margin: 0;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(2.5rem, 4.5vw, 4.3rem);
+  font-weight: 800;
+  letter-spacing: -.045em;
+  line-height: 1.05;
+}
+.music-page-title h1 span {
+  color: #16a8e6;
+}
+.music-page-title-rule {
+  width: 145px;
+  height: 4px;
+  margin: 32px auto 0;
+  background: var(--red);
+}
