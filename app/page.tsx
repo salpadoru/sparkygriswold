@@ -115,29 +115,26 @@ export default function Home() {
           <p className="section-note">WEDDINGS • CORPORATE • CLUBS • FESTIVALS</p>
         </div>
 
-        <div className="event-list">
-          <div className="event-list-head">
-            <span>EVENTS</span>
-            <span>DATE</span>
-            <span>VENUE</span>
-            <span>DETAILS</span>
-          </div>
-
+        <div className="event-cards">
           {eventItems.map((event, index) => (
-            <a className="event-row event-link" key={event.id} href={`/events/${event.id}`}>
-              <div className="event-number">EVENT {String(index + 1).padStart(2, "0")}</div>
-              <div className="event-title-cell">{event.image && <img className="event-thumb" src={event.image} alt="" />}<strong>{event.title}</strong></div>
-              <div className="event-field">
-                <small>DATE</small>
-                <span>{formatEventDate(event.date)}</span>
+            <a className="event-card" key={event.id} href={`/events/${event.id}`}>
+              <div className="event-card-image">
+                {event.image && <img src={event.image} alt={event.title} />}
               </div>
-              <div className="event-field">
-                <small>VENUE</small>
-                <span>{event.venue}</span>
-              </div>
-              <div className="event-action">
-                <span>VIEW EVENT</span>
-                <ArrowUpRight size={19} />
+              <div className="event-card-body">
+                <div className="event-card-top">
+                  <span>EVENT {String(index + 1).padStart(2, "0")}</span>
+                  <span>{formatEventDate(event.date)}</span>
+                </div>
+                <h3>{event.title}</h3>
+                <div className="event-card-meta">
+                  <span>{event.venue}</span>
+                  <span>{event.id === "dj-fridays" ? "1 PM" : "10 PM"}</span>
+                </div>
+                <div className="event-card-footer">
+                  <span>{event.externalUrl?.includes("twitch.tv") ? "VISIT LINK" : "BOOK NOW"}</span>
+                  <ArrowUpRight size={19} />
+                </div>
               </div>
             </a>
           ))}
