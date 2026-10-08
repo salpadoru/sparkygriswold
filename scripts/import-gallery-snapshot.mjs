@@ -19,7 +19,8 @@ const items = [...source.matchAll(
   url: match[1],
   title: match[2],
   year: Number(match[3]),
-}));
+}))
+.filter((item) => /^https?:\/\//.test(item.url));
 
 console.log(`Found ${items.length} gallery images in the current snapshot.`);
 
