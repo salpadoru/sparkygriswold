@@ -184,12 +184,35 @@ export default function AdminPage() {
           <label>Caption<input value={caption} onChange={e => setCaption(e.target.value)} /></label>
           <button disabled={busy || !file}>SAVE PHOTO</button>
         </form>
-        <div className="admin-list">{gallery.map(item => <article className="admin-row" key={item.id}>
-          <div><strong>{item.title || "Untitled photo"}</strong><small>{item.caption}</small></div>
-          <span>{item.published ? "PUBLISHED" : "HIDDEN"}</span>
-          <button onClick={() => toggle("gallery", item.id, item.published)}>{item.published ? "HIDE" : "PUBLISH"}</button>
-          <button onClick={() => removeGallery(item)}>DELETE</button>
-        </article>)}</div>
+        <div className="admin-gallery-toolbar">
+          <div>
+            <h2>GALLERY</h2>
+            <p>{gallery.length} uploaded image{gallery.length === 1 ? "" : "s"}</p>
+          </div>
+        </div>
+        <div className="admin-gallery-grid">
+          {gallery.map(item => {
+            const imageUrl = supabase.storage.from("gallery").getPublicUrl(item.image_path).data.publicUrl;
+            return (
+              <article className={`admin-gallery-card${item.published ? "" : " is-hidden"}`} key={item.id}>
+                <div className="admin-gallery-thumb">
+                  <img src={imageUrl} alt={item.title || "Gallery image"} loading="lazy" />
+                  <span>{item.published ? "PUBLISHED" : "HIDDEN"}</span>
+                </div>
+                <div className="admin-gallery-info">
+                  <strong>{item.title || "Untitled photo"}</strong>
+                  {item.caption && <small>{item.caption}</small>}
+                </div>
+                <div className="admin-gallery-actions">
+                  <button onClick={() => toggle("gallery", item.id, item.published)}>
+                    {item.published ? "HIDE" : "PUBLISH"}
+                  </button>
+                  <button className="danger" onClick={() => removeGallery(item)}>DELETE</button>
+                </div>
+              </article>
+            );
+          })}
+        </div>
       </section> : <section className="admin-section">
         <form className="admin-card admin-form" onSubmit={addEvent}>
           <h2>ADD EVENT</h2>
