@@ -2,9 +2,9 @@
 
 import { ArrowDownRight, ArrowRight, ArrowUpRight, Menu, Play, X } from "lucide-react";
 import { useState } from "react";
-import { galleryImages, siteContent } from "@/lib/content";
-import { eventItems } from "@/lib/generatedEvents";
-import { formatEventDate } from "@/lib/events";
+import { galleryImages, siteContent } from "../lib/content";
+import { eventItems } from "../lib/generatedEvents";
+import { formatEventDate } from "../lib/events";
 
 const nav = ["ABOUT", "SERVICES", "CLIENTS", "EVENTS", "MUSIC", "GALLERY", "CONTACT"];
 
