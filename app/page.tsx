@@ -10,7 +10,7 @@ const sectionHref: Record<string, string> = {
   SERVICES: "#services",
   CLIENTS: "#clients",
   EVENTS: "#events",
-  MUSIC: "#music",
+  MUSIC: "/music/",
   GALLERY: "#gallery",
   CONTACT: "#contact",
 };
