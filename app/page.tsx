@@ -95,6 +95,9 @@ export default function Home() {
               <p>{client.body}</p>
             </article>
           ))}
+          <div className="client-image-tile" aria-hidden="true">
+            <img src="https://sparkygriswold.com/wp-content/uploads/2015/04/19.jpg" alt="" />
+          </div>
         </div>
 
         <div className="venues-block">
