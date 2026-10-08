@@ -1183,3 +1183,8 @@ footer {
     height: 400px;
   }
 }
+
+/* --- About paragraph refinement --- */
+.intro-copy > p:first-child {
+  font-size: clamp(1.4rem, 2.15vw, 2.1rem);
+}
