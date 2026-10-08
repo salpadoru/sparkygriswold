@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
-import { eventItems } from "@/lib/generatedEvents";
-import { formatEventDate } from "@/lib/events";
+import { eventItems } from "../../../lib/generatedEvents";
+import { formatEventDate } from "../../../lib/events";
 
 export function generateStaticParams() {
   return eventItems.map((event) => ({ id: event.id }));
