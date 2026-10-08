@@ -1189,3 +1189,24 @@ footer {
   font-size: clamp(1.25rem, 1.9vw, 1.9rem);
   line-height: 1.12;
 }
+
+/* --- Music section archive images --- */
+.music-home-images {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 30px;
+}
+.music-home-images img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(100%);
+}
+@media (max-width: 700px) {
+  .music-home-images {
+    grid-template-columns: 1fr;
+  }
+}
