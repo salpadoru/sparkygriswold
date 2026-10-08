@@ -2,6 +2,7 @@
 
 import { FormEvent, useEffect, useState } from "react";
 import { createClient, type Session } from "@supabase/supabase-js";
+import { galleryImages } from "@/lib/generatedGallery";
 
 const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const key = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
@@ -190,6 +191,13 @@ export default function AdminPage() {
             <p>{gallery.length} uploaded image{gallery.length === 1 ? "" : "s"}</p>
           </div>
         </div>
+        {gallery.length === 0 && galleryImages.length > 0 && (
+          <div className="admin-gallery-empty-state">
+            <strong>THE CURRENT PUBLIC GALLERY IS STILL IN GITHUB</strong>
+            <span>{galleryImages.length} archive images are in the public-site snapshot, but they have not yet been imported into Supabase.</span>
+            <span>Run GitHub Actions → <strong>Import Gallery Snapshot</strong> once. After that, every image will appear here with HIDE / PUBLISH / DELETE controls.</span>
+          </div>
+        )}
         <div className="admin-gallery-grid">
           {gallery.map(item => {
             const imageUrl = supabase.storage.from("gallery").getPublicUrl(item.image_path).data.publicUrl;
