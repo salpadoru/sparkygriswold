@@ -1407,14 +1407,13 @@ footer {
 
 
 /* --- Section title consistency: match TRUSTED BY --- */
-.intro-section h2,
-.section-heading h2 {
+/* Use the same sizing rule for THE DJ as the other main section titles. */
+.intro-section h2 {
   font-size: clamp(4rem, 9vw, 9rem);
 }
 
 @media (max-width: 560px) {
-  .intro-section h2,
-  .section-heading h2 {
+  .intro-section h2 {
     font-size: clamp(4rem, 9vw, 9rem);
   }
 }
