@@ -17,11 +17,10 @@ export default function MusicPage() {
       </header>
 
       <section className="music-page-intro">
-        <div>
-          <p className="section-kicker">05 / MUSIC</p>
-          <h1>EXPLORE<br /><span>ON MIXCLOUD</span></h1>
+        <div className="music-page-title">
+          <h1>Explore on <span>Mixcloud</span></h1>
+          <div className="music-page-title-rule" />
         </div>
-        <p>Explore on Mixcloud</p>
       </section>
 
       <section className="music-feeds music-card-grid" aria-label="Mixcloud music">
@@ -33,7 +32,7 @@ export default function MusicPage() {
           <article className="music-feed-card" key={mix.href}>
             <div className="music-player">
               <iframe
-                src={mixcloudFeeds[index + 1]}
+                src={mixcloudFeeds[index]}
                 title={mix.title}
                 width="100%"
                 height="520"
