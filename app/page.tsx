@@ -1,4 +1,7 @@
-import { ArrowDownRight, ArrowRight, ArrowUpRight, Play } from "lucide-react";
+import { ArrowDownRight, ArrowRight, ArrowUpRight, Menu, Play, X } from "lucide-react";
+"use client";
+
+import { useState } from "react";
 import { galleryImages, siteContent } from "@/lib/content";
 import { eventItems } from "@/lib/generatedEvents";
 import { formatEventDate } from "@/lib/events";
@@ -16,18 +19,37 @@ const sectionHref: Record<string, string> = {
 };
 
 export default function Home() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
     <main className="site-shell">
       <header className="site-header">
         <a href="#" className="brand" aria-label="Sparky Griswold home">
           <img src="/archive/logo.png" alt="Sparky Griswold" />
         </a>
-        <nav>
+        <nav className="desktop-nav">
           {nav.map((item) => (
             <a key={item} href={sectionHref[item]}>{item}</a>
           ))}
         </nav>
         <a className="header-cta" href="#contact">BOOK / CONTACT</a>
+        <button
+          className="mobile-menu-button"
+          type="button"
+          aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={mobileMenuOpen}
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        >
+          {mobileMenuOpen ? <X size={28} /> : <Menu size={30} />}
+        </button>
+        {mobileMenuOpen && (
+          <nav className="mobile-nav">
+            {nav.map((item) => (
+              <a key={item} href={sectionHref[item]} onClick={() => setMobileMenuOpen(false)}>{item}</a>
+            ))}
+            <a href="#contact" onClick={() => setMobileMenuOpen(false)}>BOOK / CONTACT</a>
+          </nav>
+        )}
       </header>
 
       <section className="archive-hero">
