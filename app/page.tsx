@@ -126,7 +126,7 @@ export default function Home() {
           {eventItems.map((event, index) => (
             <a className="event-row event-link" key={event.id} href={`/events/${event.id}`}>
               <div className="event-number">EVENT {String(index + 1).padStart(2, "0")}</div>
-              <strong>{event.title}</strong>
+              <div className="event-title-cell">{event.image && <img className="event-thumb" src={event.image} alt="" />}<strong>{event.title}</strong></div>
               <div className="event-field">
                 <small>DATE</small>
                 <span>{formatEventDate(event.date)}</span>
@@ -171,7 +171,7 @@ export default function Home() {
             <p className="section-kicker">06 / GALLERY</p>
             <h2>PHOTO<br /><span>ARCHIVE</span></h2>
           </div>
-          <p className="section-note">2015–2016 PHOTO ARCHIVE</p>
+          <p className="section-note">LIVE EVENT PHOTO ARCHIVE</p>
         </div>
 
         <div className="gallery-grid">
