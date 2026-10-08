@@ -1404,3 +1404,22 @@ footer {
   letter-spacing: -.01em;
   max-width: 690px;
 }
+
+
+/* --- Section title consistency: match TRUSTED BY --- */
+.intro-section h2,
+.section-heading h2 {
+  font-size: clamp(4rem, 9vw, 9rem);
+}
+
+@media (max-width: 560px) {
+  .intro-section h2,
+  .section-heading h2 {
+    font-size: clamp(4rem, 9vw, 9rem);
+  }
+}
+
+/* --- Restore the original approved home-page hero image --- */
+.hero-image {
+  background-image: url("https://sparkygriswold.com/wp-content/uploads/2015/04/3.jpg");
+}
