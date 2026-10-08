@@ -18,18 +18,22 @@ jobs:
       - run: npm install
       - run: npm run build
 
+      - name: Assemble standalone Namecheap deployment
+        run: |
+          rm -rf namecheap-deploy
+          mkdir -p namecheap-deploy/.next
+          cp -R .next/standalone/. namecheap-deploy/
+          cp -R .next/static namecheap-deploy/.next/static
+          cp -R public namecheap-deploy/public
+
       - name: Create Namecheap deployment package
         run: |
-          zip -r sparky-namecheap.zip . \
-            -x "node_modules/*" \
-            -x ".git/*" \
-            -x ".github/*" \
-            -x "README.md" \
-            -x ".gitignore"
+          cd namecheap-deploy
+          zip -r ../sparky-namecheap-standalone.zip .
 
       - name: Upload deployment package
         uses: actions/upload-artifact@v4
         with:
-          name: sparky-namecheap
-          path: sparky-namecheap.zip
+          name: sparky-namecheap-standalone
+          path: sparky-namecheap-standalone.zip
           retention-days: 7
