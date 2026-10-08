@@ -45,7 +45,7 @@ export default async function EventPage({
           </div>
 
           <div className="event-detail-copy">
-            <p>{event.description || "Event details coming soon."}</p>
+            {event.description ? <p>{event.description}</p> : null}
             {event.externalUrl && (
               <a
                 className="button button-solid"
