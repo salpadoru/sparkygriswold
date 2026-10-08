@@ -1681,3 +1681,19 @@ footer {
     font-size: 13px;
   }
 }
+
+
+/* --- Final title sizing correction: bold, but not oversized --- */
+h2,
+.intro-section h2,
+.services-section .section-heading h2 {
+  font-size: clamp(4.2rem, 7vw, 7.4rem);
+  line-height: .82;
+}
+
+@media (max-width: 560px) {
+  .intro-section h2,
+  .services-section .section-heading h2 {
+    font-size: clamp(4rem, 18vw, 6rem);
+  }
+}
