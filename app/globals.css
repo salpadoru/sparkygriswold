@@ -1697,3 +1697,52 @@ h2,
     font-size: clamp(4rem, 18vw, 6rem);
   }
 }
+
+
+/* --- User-requested readability increase: menu + visible section text --- */
+.site-header nav a,
+.header-cta,
+.mobile-nav a {
+  font-size: 16px;
+  letter-spacing: .12em;
+}
+
+.highlight-list li {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.services-section .service-row p {
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+.services-section .service-row strong {
+  font-size: clamp(1.65rem, 2.45vw, 2.35rem);
+}
+
+.venues-block .section-kicker {
+  font-size: 14px;
+}
+
+.venue-list span {
+  font-size: 14px;
+  padding: 12px 15px;
+}
+
+@media (max-width: 560px) {
+  .site-header nav a,
+  .header-cta,
+  .mobile-nav a {
+    font-size: 14px;
+  }
+
+  .highlight-list li,
+  .services-section .service-row p {
+    font-size: 15px;
+  }
+
+  .venue-list span {
+    font-size: 13px;
+  }
+}
