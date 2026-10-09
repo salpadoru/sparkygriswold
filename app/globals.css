@@ -1697,3 +1697,57 @@ h2,
     font-size: clamp(4rem, 18vw, 6rem);
   }
 }
+
+/* --- User-requested typography refinement --- */
+/* 1. Slightly larger header/menu text. */
+.site-header nav a,
+.header-cta,
+.mobile-nav a {
+  font-size: 14px;
+}
+
+/* 2. Slightly larger small/supporting text across the public site. */
+.eyebrow,
+.section-kicker,
+.section-note,
+.small-copy,
+.event-list-head,
+.event-number,
+.event-field small,
+.event-action span,
+.gallery-label,
+.mix-row span,
+.mix-row em,
+.event-meta,
+.music-page-header,
+.music-page-intro > p,
+.music-feed-heading > span,
+.music-feed-heading p,
+footer,
+.social-row a,
+.button {
+  font-size: 12px;
+}
+
+/* 3. Keep THE DJ, THE RIGHT SET and TRUSTED BY at exactly the same title size. */
+.intro-section h2,
+.services-section .section-heading h2,
+.clients-section .section-heading h2 {
+  font-size: clamp(4.2rem, 7vw, 7.4rem);
+  line-height: .82;
+}
+
+@media (max-width: 560px) {
+  .intro-section h2,
+  .services-section .section-heading h2,
+  .clients-section .section-heading h2 {
+    font-size: clamp(4rem, 18vw, 6rem);
+  }
+
+  .site-header nav a,
+  .header-cta,
+  .mobile-nav a {
+    font-size: 14px;
+  }
+}
+
