@@ -26,9 +26,14 @@ export default function Home() {
     let cancelled = false;
     async function loadMixArtwork() {
       try {
-        const response = await fetch("https://api.mixcloud.com/SparkyGriswold/cloudcasts/?limit=100");
-        if (!response.ok) return;
-        const result = await response.json();
+        const [profileResponse, showsResponse] = await Promise.all([
+          fetch("https://api.mixcloud.com/SparkyGriswold/"),
+          fetch("https://api.mixcloud.com/SparkyGriswold/cloudcasts/?limit=100"),
+        ]);
+        if (!showsResponse.ok) return;
+        const profile = profileResponse.ok ? await profileResponse.json() : {};
+        const profileImage = profile.pictures?.medium_mobile || profile.pictures?.medium || profile.picture || "";
+        const result = await showsResponse.json();
         const shows = Array.isArray(result.data) ? result.data : [];
         const normalize = (value: string) => value
           .toLowerCase()
@@ -43,11 +48,7 @@ export default function Home() {
           5: ["holiday hangover"],
         };
         const artworkEntries = siteContent.mixes.map((mix, index) => {
-          if (index === 0) {
-            const firstFeaturedShow = shows.find((show: any) => show.pictures?.medium_mobile || show.pictures?.medium || show.picture);
-            const image = firstFeaturedShow?.pictures?.medium_mobile || firstFeaturedShow?.pictures?.medium || firstFeaturedShow?.picture || "";
-            return [mix.title, image] as const;
-          }
+          if (index === 0) return [mix.title, profileImage] as const;
 
           const candidates = aliases[index] || [normalize(mix.title)];
           const matchingShow = shows.find((show: any) => {
@@ -223,7 +224,7 @@ export default function Home() {
           {siteContent.mixes.map((mix, index) => (
             <a className="mix-row" key={mix.title} href={mix.href} target="_blank" rel="noreferrer">
               <span>0{index + 1}</span>
-              <img className="mix-row-artwork" src={mixArtwork[mix.title] || "/images/mix-01.svg"} alt="" loading="lazy" />
+              {mixArtwork[mix.title] && <img className="mix-row-artwork" src={mixArtwork[mix.title]} alt="" loading="lazy" />}
               <strong>{mix.title}</strong>
               <em>{mix.meta}</em>
               <ArrowUpRight size={20} />
