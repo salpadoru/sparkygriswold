@@ -81,7 +81,7 @@ export default function Home() {
         <div className="section-heading">
           <div>
             <p className="section-kicker">02 / SERVICES</p>
-            <h2>THE RIGHT<br /><span>SET</span></h2>
+            <h2>THE ULTIMATE<br /><span>DJ EXPERIENCE</span></h2>
           </div>
           <p className="section-note">TAILORED DJ EXPERIENCES</p>
         </div>
@@ -101,7 +101,7 @@ export default function Home() {
         <div className="section-heading">
           <div>
             <p className="section-kicker">03 / CLIENTS</p>
-            <h2>TRUSTED<br /><span>BY</span></h2>
+            <h2>TESTIMONIALS</h2>
           </div>
           <p className="section-note">EVENTS • BRANDS • PRIVATE CLIENTS</p>
         </div>
@@ -131,7 +131,7 @@ export default function Home() {
         <div className="section-heading">
           <div>
             <p className="section-kicker">04 / EVENTS</p>
-            <h2>BUILT FOR<br /><span>THE ROOM</span></h2>
+            <h2>FEEL THE<br /><span>VIBE</span></h2>
           </div>
           <p className="section-note">WEDDINGS • CORPORATE • CLUBS • FESTIVALS</p>
         </div>
@@ -166,7 +166,7 @@ export default function Home() {
         <div className="section-heading">
           <div>
             <p className="section-kicker">05 / MUSIC</p>
-            <h2>LISTEN<br /><span>BACK</span></h2>
+            <h2>DJ<br /><span>MIXES</span></h2>
           </div>
           <Play size={44} strokeWidth={1} />
         </div>
@@ -187,7 +187,7 @@ export default function Home() {
         <div className="section-heading">
           <div>
             <p className="section-kicker">06 / GALLERY</p>
-            <h2>PHOTO<br /><span>ARCHIVE</span></h2>
+            <h2>PHOTO<br /><span>GALLERY</span></h2>
           </div>
           <p className="section-note">LIVE EVENT PHOTO ARCHIVE</p>
         </div>
@@ -196,10 +196,6 @@ export default function Home() {
           {galleryImages.map((image) => (
             <a className="gallery-card" key={image.number} href={image.full}>
               <img src={image.src} alt={image.name || `Sparky Griswold archive photograph ${image.number}`} />
-              <div className="gallery-label">
-                <span>{String(image.number).padStart(2, "0")}</span>
-                <span>{image.year ?? "ARCHIVE"}</span>
-              </div>
             </a>
           ))}
         </div>
@@ -208,19 +204,19 @@ export default function Home() {
       <section id="contact" className="contact-section">
         <div>
           <p className="section-kicker">07 / CONTACT</p>
-          <h2>LET'S<br /><span>CONNECT.</span></h2>
+          <h2>BOOK<br /><span>SPARKY</span></h2>
         </div>
         <div className="contact-side">
-          <p>Ready to book Sparky for a wedding, corporate event, club night, festival or private celebration? Get in touch to check availability and request a quote.</p>
+          <p>Get in touch to check availability and request a quote.</p>
           <div className="contact-details">
             <a href={"tel:" + siteContent.contact.phone}>{siteContent.contact.phone}</a>
             <a href={"mailto:" + siteContent.contact.email}>{siteContent.contact.email}</a>
           </div>
           <div className="social-row">
-            <a href={siteContent.social.mixcloud} target="_blank" rel="noreferrer">MIXCLOUD ↗</a>
-            <a href={siteContent.social.instagram} target="_blank" rel="noreferrer">INSTAGRAM ↗</a>
-            <a href={siteContent.social.x} target="_blank" rel="noreferrer">X ↗</a>
-            <a href={siteContent.social.youtube} target="_blank" rel="noreferrer">YOUTUBE ↗</a>
+            <a href={siteContent.social.mixcloud} target="_blank" rel="noopener noreferrer">MIXCLOUD ↗</a>
+            <a href={siteContent.social.instagram} target="_blank" rel="noopener noreferrer">INSTAGRAM ↗</a>
+            <a href={siteContent.social.x} target="_blank" rel="noopener noreferrer">X ↗</a>
+            <a href={siteContent.social.youtube} target="_blank" rel="noopener noreferrer">YOUTUBE ↗</a>
           </div>
         </div>
       </section>
