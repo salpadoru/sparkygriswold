@@ -1746,3 +1746,25 @@ h2,
     font-size: 13px;
   }
 }
+
+
+/* --- Cross-browser desktop menu spacing --- */
+@media (min-width: 901px) {
+  .site-header {
+    gap: 28px;
+  }
+
+  .site-header .desktop-nav {
+    flex: 1 1 auto;
+    min-width: 0;
+    justify-content: space-between;
+    gap: 0;
+    margin-left: clamp(24px, 4vw, 70px);
+  }
+
+  .site-header .desktop-nav a {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    padding: 0 6px;
+  }
+}
