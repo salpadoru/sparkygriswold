@@ -138,7 +138,7 @@ export default function Home() {
 
         <div className="event-cards">
           {eventItems.map((event, index) => (
-            <a className="event-card" key={event.id} href={`/events/${event.id}`}>
+            <a className="event-card" key={event.id} href="#contact">
               <div className="event-card-image">
                 {event.image && <img src={event.image} alt={event.title} />}
               </div>
@@ -153,7 +153,7 @@ export default function Home() {
                   <span>{event.id === "dj-fridays" ? "1 PM" : "10 PM"}</span>
                 </div>
                 <div className="event-card-footer">
-                  <span>"BOOK SPARKY"</span>
+                  <span>BOOK SPARKY</span>
                   <ArrowUpRight size={19} />
                 </div>
               </div>
