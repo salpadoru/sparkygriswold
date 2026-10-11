@@ -1790,3 +1790,32 @@ h2,
 .contact-section h2 span {
   color: #fff;
 }
+
+
+/* Mixcloud artwork thumbnails in the homepage music list. */
+.mix-row {
+  grid-template-columns: 42px 92px minmax(180px, 1fr) 180px 30px;
+  gap: 18px;
+}
+.mix-row-artwork {
+  display: block;
+  width: 92px;
+  height: 64px;
+  object-fit: cover;
+  background: #171717;
+}
+@media (max-width: 560px) {
+  .mix-row {
+    grid-template-columns: 34px 58px minmax(0, 1fr) 24px;
+    gap: 10px;
+    padding: 12px 0;
+  }
+  .mix-row-artwork {
+    width: 58px;
+    height: 52px;
+  }
+  .mix-row strong {
+    font-size: 1rem;
+    line-height: 1.2;
+  }
+}
