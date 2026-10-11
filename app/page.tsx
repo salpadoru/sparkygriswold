@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowDownRight, ArrowRight, ArrowUpRight, Menu, Play, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { galleryImages, siteContent } from "../lib/content";
 import { eventItems } from "../lib/generatedEvents";
 import { formatEventDate } from "../lib/events";
@@ -13,13 +13,56 @@ const sectionHref: Record<string, string> = {
   SERVICES: "#services",
   CLIENTS: "#clients",
   EVENTS: "#events",
-  MUSIC: "/music/",
+  MUSIC: "#music",
   GALLERY: "#gallery",
   CONTACT: "#contact",
 };
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mixArtwork, setMixArtwork] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    let cancelled = false;
+    async function loadMixArtwork() {
+      try {
+        const profileResponse = await fetch("https://api.mixcloud.com/SparkyGriswold/");
+        const profile = profileResponse.ok ? await profileResponse.json() : {};
+        const profileImage = profile.pictures?.medium_mobile || profile.pictures?.medium || profile.picture || "";
+        const artworkEntries = await Promise.all(siteContent.mixes.map(async (mix, index) => {
+          if (index === 0) return [mix.title, profileImage] as const;
+          const query = mix.title
+            .replace(/^SPARKY GRISWOLD PRESENTS…/i, "")
+            .replace(/^THE /i, "")
+            .replace(/[‘’]/g, "'")
+            .replace(/\s+/g, " ")
+            .trim();
+          try {
+            const response = await fetch("https://api.mixcloud.com/search/?q=" + encodeURIComponent(query) + "&type=cloudcast&limit=10");
+            if (!response.ok) return [mix.title, profileImage] as const;
+            const result = await response.json();
+            const shows = Array.isArray(result.data) ? result.data : [];
+            const matchingShow = shows.find((show: any) => {
+              const creator = String(show.user?.username || show.user?.key || show.url || "").toLowerCase();
+              const title = String(show.name || "").toLowerCase().replace(/[’‘]/g, "'");
+              return creator.includes("sparkygriswold") && (title.includes(query.toLowerCase()) || query.toLowerCase().includes(title));
+            }) || shows.find((show: any) =>
+              String(show.user?.username || show.user?.key || show.url || "").toLowerCase().includes("sparkygriswold")
+            );
+            const image = matchingShow?.pictures?.medium_mobile || matchingShow?.pictures?.medium || matchingShow?.picture || profileImage;
+            return [mix.title, image] as const;
+          } catch {
+            return [mix.title, profileImage] as const;
+          }
+        }));
+        if (!cancelled) setMixArtwork(Object.fromEntries(artworkEntries.filter((entry) => entry[1])));
+      } catch {
+        // Keep the music list usable if Mixcloud's public API is temporarily unavailable.
+      }
+    }
+    loadMixArtwork();
+    return () => { cancelled = true; };
+  }, []);
 
   return (
     <main className="site-shell">
@@ -175,6 +218,7 @@ export default function Home() {
           {siteContent.mixes.map((mix, index) => (
             <a className="mix-row" key={mix.title} href={mix.href} target="_blank" rel="noreferrer">
               <span>0{index + 1}</span>
+              <img className="mix-row-artwork" src={mixArtwork[mix.title] || "/images/mix-01.svg"} alt="" loading="lazy" />
               <strong>{mix.title}</strong>
               <em>{mix.meta}</em>
               <ArrowUpRight size={20} />
