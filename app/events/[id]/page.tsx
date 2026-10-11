@@ -46,16 +46,9 @@ export default async function EventPage({
 
           <div className="event-detail-copy">
             {event.description ? <p>{event.description}</p> : null}
-            {event.externalUrl && (
-              <a
-                className="button button-solid"
-                href={event.externalUrl}
-                target="_blank"
-                rel="noreferrer"
-              >
-                EVENT / TICKETS <ArrowUpRight size={16} />
-              </a>
-            )}
+            <a className="button button-solid" href="/#contact">
+              BOOK NOW <ArrowUpRight size={16} />
+            </a>
           </div>
         </div>
 
