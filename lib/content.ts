@@ -31,8 +31,8 @@ export const siteContent = {
   ] satisfies ServiceItem[],
   mixes: [
     { title: "SPARKY GRISWOLD / MIXCLOUD", meta: "DJ MIXES", href: "https://www.mixcloud.com/SparkyGriswold/" },
-    { title: "SPARKY GRISWOLD PRESENTS…SUMMER ‘26", meta: "DJ MIXES", href: "https://www.mixcloud.com/SparkyGriswold/" },
-    { title: "SPARKY GRISWOLD PRESENTS…NEW WAVE MIX", meta: "DJ MIXES", href: "https://www.mixcloud.com/SparkyGriswold/" },
+    { title: "SPARKY GRISWOLD PRESENTS…SUMMER ‘26", meta: "DJ MIXES", href: "https://www.mixcloud.com/SparkyGriswold/summer-26/" },
+    { title: "SPARKY GRISWOLD PRESENTS…NEW WAVE MIX", meta: "DJ MIXES", href: "https://www.mixcloud.com/SparkyGriswold/new-wave-memories/" },
     { title: "SPARKY GRISWOLD PRESENTS…SUMMER VACATION", meta: "DJ MIXES", href: "https://www.mixcloud.com/SparkyGriswold/sparky-griswold-presentssummer-vacation/" },
     { title: "SUMMER AT SPARKY’S", meta: "DJ MIXES", href: "https://www.mixcloud.com/SparkyGriswold/summer-at-sparkys/" },
     { title: "THE HOLIDAY HANGOVER", meta: "DJ MIXES", href: "https://www.mixcloud.com/SparkyGriswold/the-holiday-hangover/" },
