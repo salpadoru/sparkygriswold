@@ -24,48 +24,45 @@ export default function Home() {
 
   useEffect(() => {
     let cancelled = false;
-    async function loadMixArtwork() {
-      try {
-        const [profileResponse, showsResponse] = await Promise.all([
-          fetch("https://api.mixcloud.com/SparkyGriswold/"),
-          fetch("https://api.mixcloud.com/SparkyGriswold/cloudcasts/?limit=100"),
-        ]);
-        if (!showsResponse.ok) return;
-        const profile = profileResponse.ok ? await profileResponse.json() : {};
-        const profileImage = profile.pictures?.medium_mobile || profile.pictures?.medium || profile.picture || "";
-        const result = await showsResponse.json();
-        const shows = Array.isArray(result.data) ? result.data : [];
-        const normalize = (value: string) => value
-          .toLowerCase()
-          .replace(/[’‘]/g, "'")
-          .replace(/[^a-z0-9]+/g, " ")
-          .trim();
-        const aliases: Record<number, string[]> = {
-          1: ["summer 26", "summer 2026"],
-          2: ["new wave memories", "new wave mix"],
-          3: ["summer vacation"],
-          4: ["summer at sparky s", "summer at sparkys"],
-          5: ["holiday hangover"],
-        };
-        const artworkEntries = siteContent.mixes.map((mix, index) => {
-          if (index === 0) return [mix.title, profileImage] as const;
 
-          const candidates = aliases[index] || [normalize(mix.title)];
-          const matchingShow = shows.find((show: any) => {
-            const showTitle = normalize(String(show.name || ""));
-            return candidates.some((candidate) => {
-              const wanted = normalize(candidate);
-              return showTitle.includes(wanted) || wanted.includes(showTitle);
-            });
-          });
-          const image = matchingShow?.pictures?.medium_mobile || matchingShow?.pictures?.medium || matchingShow?.picture || "";
+    const highestResolutionPicture = (pictures: any, fallback = "") => {
+      if (!pictures) return fallback;
+      const candidates = [
+        pictures["1024wx1024h"],
+        pictures.extra_large,
+        pictures["640wx640h"],
+        pictures.large,
+        pictures.medium,
+        pictures["320wx320h"],
+        pictures.medium_mobile,
+      ];
+      const selected = candidates.find((value) => typeof value === "string" && value.length > 0) || fallback;
+      // Mixcloud's thumbnail service supports requesting a larger rendition of the same source artwork.
+      return selected.replace(/\/unsafe\/\d+x\d+\//, "/unsafe/1200x1200/");
+    };
+
+    async function loadMixArtwork() {
+      const artworkEntries = await Promise.all(siteContent.mixes.map(async (mix, index) => {
+        try {
+          const apiUrl = mix.href.replace("https://www.mixcloud.com/", "https://api.mixcloud.com/");
+          const response = await fetch(apiUrl);
+          if (!response.ok) return [mix.title, ""] as const;
+          const show = await response.json();
+          if (index === 0) {
+            return [mix.title, highestResolutionPicture(show.pictures, show.picture || "")] as const;
+          }
+          const image = highestResolutionPicture(show.pictures, show.picture || "");
           return [mix.title, image] as const;
-        });
-        if (!cancelled) setMixArtwork(Object.fromEntries(artworkEntries.filter((entry) => entry[1])));
-      } catch {
-        // Keep the music list usable if Mixcloud's public API is temporarily unavailable.
+        } catch {
+          return [mix.title, ""] as const;
+        }
+      }));
+
+      if (!cancelled) {
+        setMixArtwork(Object.fromEntries(artworkEntries.filter((entry) => entry[1])));
       }
     }
+
     loadMixArtwork();
     return () => { cancelled = true; };
   }, []);
