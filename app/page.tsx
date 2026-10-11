@@ -153,7 +153,7 @@ export default function Home() {
                   <span>{event.id === "dj-fridays" ? "1 PM" : "10 PM"}</span>
                 </div>
                 <div className="event-card-footer">
-                  <span>{event.externalUrl?.includes("twitch.tv") ? "VISIT LINK" : "BOOK NOW"}</span>
+                  <span>{event.externalUrl?.includes("twitch.tv") ? "VISIT LINK" : "BOOK SPARKY"}</span>
                   <ArrowUpRight size={19} />
                 </div>
               </div>
