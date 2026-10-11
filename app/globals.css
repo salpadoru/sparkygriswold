@@ -1768,3 +1768,19 @@ h2,
     padding: 0 6px;
   }
 }
+
+
+/* Keep contact social links crisp and stable in desktop Safari. */
+.social-row a {
+  -webkit-appearance: none;
+  -webkit-text-size-adjust: 100%;
+  text-decoration: none;
+  transform: none;
+  white-space: nowrap;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+.social-row a:hover,
+.social-row a:focus-visible {
+  transform: none;
+}
