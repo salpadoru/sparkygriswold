@@ -31,9 +31,7 @@ export default function Home() {
           {nav.map((item) => (
             <a key={item} href={sectionHref[item]}>{item}</a>
           ))}
-        </nav>
-        <a className="header-cta" href="#contact">BOOK / CONTACT</a>
-        <button
+        </nav>        <button
           className="mobile-menu-button"
           type="button"
           aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
@@ -46,9 +44,7 @@ export default function Home() {
           <nav className="mobile-nav">
             {nav.map((item) => (
               <a key={item} href={sectionHref[item]} onClick={() => setMobileMenuOpen(false)}>{item}</a>
-            ))}
-            <a href="#contact" onClick={() => setMobileMenuOpen(false)}>BOOK / CONTACT</a>
-          </nav>
+            ))}          </nav>
         )}
       </header>
 
