@@ -31,7 +31,8 @@ export default function Home() {
           {nav.map((item) => (
             <a key={item} href={sectionHref[item]}>{item}</a>
           ))}
-        </nav>        <button
+        </nav>
+        <button
           className="mobile-menu-button"
           type="button"
           aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
