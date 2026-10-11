@@ -1784,3 +1784,9 @@ h2,
 .social-row a:focus-visible {
   transform: none;
 }
+
+
+/* The contact section uses a red background, so keep the full Book Sparky title visible. */
+.contact-section h2 span {
+  color: #fff;
+}
