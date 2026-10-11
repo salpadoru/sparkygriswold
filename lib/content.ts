@@ -23,16 +23,19 @@ export const siteContent = {
       "DJ experience at top venues and restaurants",
     ],
   },
-  servicesIntro: "“Any event, any audience, the perfect soundtrack.”",
+  servicesIntro: "Any event, any audience, the perfect soundtrack.",
   services: [
     { title: "WEDDING DJ", body: "Create unforgettable moments for your special day with customized music selection from ceremony to reception." },
     { title: "CORPORATE EVENTS", body: "Professional DJ services for company parties and corporate gatherings." },
     { title: "CLUBS, BARS & LOUNGES", body: "High-energy performances for any audience." },
   ] satisfies ServiceItem[],
   mixes: [
-    { title: "SPARKY GRISWOLD / MIXCLOUD", meta: "LIVE SETS + STUDIO MIXES", href: "https://www.mixcloud.com/SparkyGriswold/" },
-    { title: "SUMMER VACATION", meta: "MIXCLOUD", href: "https://www.mixcloud.com/SparkyGriswold/sparky-griswold-presentssummer-vacation/" },
-    { title: "SUMMER AT SPARKY'S", meta: "MIXCLOUD", href: "https://www.mixcloud.com/SparkyGriswold/summer-at-sparkys/" },
+    { title: "SPARKY GRISWOLD / MIXCLOUD", meta: "DJ MIXES", href: "https://www.mixcloud.com/SparkyGriswold/" },
+    { title: "SPARKY GRISWOLD PRESENTS…SUMMER ‘26", meta: "DJ MIXES", href: "https://www.mixcloud.com/SparkyGriswold/" },
+    { title: "SPARKY GRISWOLD PRESENTS…NEW WAVE MIX", meta: "DJ MIXES", href: "https://www.mixcloud.com/SparkyGriswold/" },
+    { title: "SPARKY GRISWOLD PRESENTS…SUMMER VACATION", meta: "DJ MIXES", href: "https://www.mixcloud.com/SparkyGriswold/sparky-griswold-presentssummer-vacation/" },
+    { title: "SUMMER AT SPARKY’S", meta: "DJ MIXES", href: "https://www.mixcloud.com/SparkyGriswold/summer-at-sparkys/" },
+    { title: "THE HOLIDAY HANGOVER", meta: "DJ MIXES", href: "https://www.mixcloud.com/SparkyGriswold/the-holiday-hangover/" },
   ],
   clients: [
     { name: "Hayley and Jacob Gregus", role: "WEDDING CLIENT", body: "Sparky Griswold was the DJ at the wedding of my father and step-mother. When I got engaged, we didn’t even consider working with any other DJs – we liked Sparky so much! During the planning process of our wedding, Sparky was flexible, and easy to get in touch with. The music played at our wedding flowed perfectly – all our guests (of all ages) told us that they had a blast and loved the DJ. We would certainly work with Ron again in the future. Thanks for helping to make our Big Day so special, Sparky!" },
@@ -49,7 +52,7 @@ export const siteContent = {
     "The Park", "The Soho Grand Hotel", "Demi Monde", "Santos Party House", "Bathhouse Studios",
     "Leila Heller Art Gallery", "9A NYC", "Pianos", "Caroline's on Broadway", "Subculture New York",
     "The Graham Bar Brooklyn", "The Ritz-Carlton White Plains", "41 North Hotel", "Peekskill Mother's Yay! Market",
-    "Peekskill HoliYay! Market", "River Outpost Brewing Company",
+    "Peekskill HoliYay! Market", "River Outpost Brewing Company", "Craft Tacos & Tequila", "Hair of the Dog",
   ],
   contact: { phone: "917-731-8669", email: "info@sparkygriswold.com", location: "New York" },
   social: {
