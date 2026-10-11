@@ -21,45 +21,95 @@ const sectionHref: Record<string, string> = {
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mixArtwork, setMixArtwork] = useState<Record<string, string>>({});
+  const [mixLinks, setMixLinks] = useState<Record<string, string>>({});
 
   useEffect(() => {
     let cancelled = false;
 
-    const highestResolutionPicture = (pictures: any, fallback = "") => {
-      if (!pictures) return fallback;
-      const candidates = [
+    const highestResolutionPicture = (show: any, fallback = "") => {
+      const pictures = show?.pictures || {};
+      const selected = [
         pictures["1024wx1024h"],
         pictures.extra_large,
         pictures["640wx640h"],
         pictures.large,
+        show?.picture,
         pictures.medium,
         pictures["320wx320h"],
         pictures.medium_mobile,
-      ];
-      const selected = candidates.find((value) => typeof value === "string" && value.length > 0) || fallback;
-      // Mixcloud's thumbnail service supports requesting a larger rendition of the same source artwork.
+      ].find((value) => typeof value === "string" && value.length > 0) || fallback;
       return selected.replace(/\/unsafe\/\d+x\d+\//, "/unsafe/1200x1200/");
     };
 
-    async function loadMixArtwork() {
-      const artworkEntries = await Promise.all(siteContent.mixes.map(async (mix, index) => {
-        try {
-          const apiUrl = mix.href.replace("https://www.mixcloud.com/", "https://api.mixcloud.com/");
-          const response = await fetch(apiUrl);
-          if (!response.ok) return [mix.title, ""] as const;
-          const show = await response.json();
-          if (index === 0) {
-            return [mix.title, highestResolutionPicture(show.pictures, show.picture || "")] as const;
-          }
-          const image = highestResolutionPicture(show.pictures, show.picture || "");
-          return [mix.title, image] as const;
-        } catch {
-          return [mix.title, ""] as const;
-        }
-      }));
+    const normalize = (value: string) => value.toLowerCase()
+      .replace(/[’‘]/g, "'")
+      .replace(/[^a-z0-9]+/g, " ")
+      .trim();
 
-      if (!cancelled) {
-        setMixArtwork(Object.fromEntries(artworkEntries.filter((entry) => entry[1])));
+    const titleAliases: Record<number, string[]> = {
+      1: ["summer 26", "summer 2026", "knicks in five"],
+      2: ["new wave memories", "new wave mix"],
+      3: ["summer vacation"],
+      4: ["summer at sparky s", "summer at sparkys"],
+      5: ["holiday hangover"],
+    };
+
+    async function loadMixArtwork() {
+      try {
+        const [profileResponse, showsResponse] = await Promise.all([
+          fetch("https://api.mixcloud.com/SparkyGriswold/"),
+          fetch("https://api.mixcloud.com/SparkyGriswold/cloudcasts/?limit=100"),
+        ]);
+        const profile = profileResponse.ok ? await profileResponse.json() : {};
+        const list = showsResponse.ok ? await showsResponse.json() : {};
+        const shows = Array.isArray(list.data) ? list.data : [];
+        const artwork: Record<string, string> = {};
+        const links: Record<string, string> = {};
+
+        for (let index = 0; index < siteContent.mixes.length; index++) {
+          const mix = siteContent.mixes[index];
+          if (index === 0) {
+            const profilePicture = profile.pictures?.extra_large || profile.pictures?.large || profile.picture || "";
+            if (profilePicture) artwork[mix.title] = profilePicture;
+            links[mix.title] = mix.href;
+            continue;
+          }
+
+          const candidates = (titleAliases[index] || [normalize(mix.title)]).map(normalize);
+          let show = shows.find((item: any) => {
+            const title = normalize(String(item.name || ""));
+            return candidates.some((candidate) => title.includes(candidate) || candidate.includes(title));
+          });
+
+          // If a show isn't in the first page of the profile feed, search Mixcloud and select Sparky's matching show.
+          if (!show) {
+            const query = encodeURIComponent(candidates[0] || normalize(mix.title));
+            const searchResponse = await fetch("https://api.mixcloud.com/search/?q=" + query + "&type=cloudcast&limit=20");
+            if (searchResponse.ok) {
+              const searchResult = await searchResponse.json();
+              const results = Array.isArray(searchResult.data) ? searchResult.data : [];
+              show = results.find((item: any) => {
+                const creator = normalize(String(item.user?.username || item.user?.key || ""));
+                const title = normalize(String(item.name || ""));
+                return creator.includes("sparkygriswold") && candidates.some((candidate) => title.includes(candidate) || candidate.includes(title));
+              });
+            }
+          }
+
+          if (show) {
+            const image = highestResolutionPicture(show);
+            if (image) artwork[mix.title] = image;
+            if (show.url) links[mix.title] = show.url;
+          }
+          if (!links[mix.title]) links[mix.title] = mix.href;
+        }
+
+        if (!cancelled) {
+          setMixArtwork(artwork);
+          setMixLinks(links);
+        }
+      } catch {
+        // Keep the cards clickable if Mixcloud's public API is temporarily unavailable.
       }
     }
 
@@ -219,7 +269,7 @@ export default function Home() {
 
         <div className="mix-grid">
           {siteContent.mixes.map((mix, index) => (
-            <a className="mix-card" key={mix.title} href={mix.href} target="_blank" rel="noreferrer">
+            <a className="mix-card" key={mix.title} href={mixLinks[mix.title] || mix.href} target="_blank" rel="noreferrer">
               <div className="mix-card-artwork">
                 {mixArtwork[mix.title] && <img src={mixArtwork[mix.title]} alt="" loading="lazy" />}
                 <span className="mix-card-number">0{index + 1} / MIXCLOUD</span>
