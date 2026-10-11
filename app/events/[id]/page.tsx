@@ -47,7 +47,7 @@ export default async function EventPage({
           <div className="event-detail-copy">
             {event.description ? <p>{event.description}</p> : null}
             <a className="button button-solid" href="/#contact">
-              BOOK NOW <ArrowUpRight size={16} />
+              BOOK SPARKY <ArrowUpRight size={16} />
             </a>
           </div>
         </div>
