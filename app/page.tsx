@@ -220,14 +220,22 @@ export default function Home() {
           <Play size={44} strokeWidth={1} />
         </div>
 
-        <div className="mix-list">
+        <div className="mix-grid">
           {siteContent.mixes.map((mix, index) => (
-            <a className="mix-row" key={mix.title} href={mix.href} target="_blank" rel="noreferrer">
-              <span>0{index + 1}</span>
-              {mixArtwork[mix.title] && <img className="mix-row-artwork" src={mixArtwork[mix.title]} alt="" loading="lazy" />}
-              <strong>{mix.title}</strong>
-              <em>{mix.meta}</em>
-              <ArrowUpRight size={20} />
+            <a className="mix-card" key={mix.title} href={mix.href} target="_blank" rel="noreferrer">
+              <div className="mix-card-artwork">
+                {mixArtwork[mix.title] && <img src={mixArtwork[mix.title]} alt="" loading="lazy" />}
+                <span className="mix-card-number">0{index + 1} / MIXCLOUD</span>
+                <span className="mix-card-play" aria-hidden="true"><Play size={28} fill="currentColor" /></span>
+                <span className="mix-card-open">LISTEN ON MIXCLOUD ↗</span>
+              </div>
+              <div className="mix-card-caption">
+                <div>
+                  <p>SPARKY GRISWOLD • DJ MIXES</p>
+                  <h3>{mix.title}</h3>
+                </div>
+                <ArrowUpRight size={22} />
+              </div>
             </a>
           ))}
         </div>
