@@ -1819,3 +1819,172 @@ h2,
     line-height: 1.2;
   }
 }
+
+
+/* Music archive — large, immersive Mixcloud artwork cards. */
+.music-section {
+  background: #111113;
+  color: var(--cream);
+}
+.music-section .section-kicker,
+.music-section h2 span {
+  color: var(--red);
+}
+.music-section .section-heading > svg {
+  color: var(--red);
+}
+.mix-grid {
+  width: min(1400px, 90vw);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+}
+.mix-card {
+  min-width: 0;
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  background: #1b1b1e;
+  border: 1px solid rgba(255,255,255,.12);
+  overflow: hidden;
+  transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+.mix-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255,255,255,.4);
+  box-shadow: 0 18px 42px rgba(0,0,0,.25);
+}
+.mix-card-artwork {
+  position: relative;
+  aspect-ratio: 1.12 / 1;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 75% 20%, rgba(255,0,72,.42), transparent 34%),
+    linear-gradient(135deg, #25252a, #101014 70%);
+}
+.mix-card-artwork::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.35), transparent 30%, transparent 52%, rgba(0,0,0,.72));
+  pointer-events: none;
+}
+.mix-card-artwork img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform .5s ease, filter .35s ease;
+}
+.mix-card:hover .mix-card-artwork img {
+  transform: scale(1.055);
+  filter: saturate(1.12);
+}
+.mix-card-number,
+.mix-card-open {
+  position: absolute;
+  z-index: 1;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .14em;
+}
+.mix-card-number {
+  top: 18px;
+  left: 18px;
+  padding: 9px 11px;
+  background: rgba(12,12,14,.72);
+  border: 1px solid rgba(255,255,255,.24);
+  backdrop-filter: blur(8px);
+}
+.mix-card-open {
+  left: 18px;
+  bottom: 18px;
+  color: #fff;
+}
+.mix-card-play {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  width: 72px;
+  height: 72px;
+  display: grid;
+  place-items: center;
+  padding-left: 4px;
+  border-radius: 50%;
+  color: #fff;
+  background: var(--red);
+  border: 1px solid rgba(255,255,255,.8);
+  box-shadow: 0 8px 28px rgba(0,0,0,.25);
+  transform: translate(-50%, -50%) scale(.92);
+  transition: transform .25s ease, background .25s ease;
+}
+.mix-card:hover .mix-card-play {
+  transform: translate(-50%, -50%) scale(1);
+  background: #ff1744;
+}
+.mix-card-caption {
+  min-height: 118px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px;
+}
+.mix-card-caption > div {
+  min-width: 0;
+}
+.mix-card-caption p {
+  margin: 0 0 10px;
+  color: rgba(240,238,232,.55);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .14em;
+}
+.mix-card-caption h3 {
+  margin: 0;
+  font-size: clamp(1.1rem, 1.55vw, 1.55rem);
+  line-height: 1.12;
+  letter-spacing: -.025em;
+  overflow-wrap: anywhere;
+}
+.mix-card-caption > svg {
+  flex: 0 0 auto;
+  color: var(--red);
+  transition: transform .2s ease;
+}
+.mix-card:hover .mix-card-caption > svg {
+  transform: translate(3px, -3px);
+}
+@media (max-width: 900px) {
+  .mix-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+  .mix-card-caption {
+    min-height: 110px;
+    padding: 18px;
+  }
+}
+@media (max-width: 560px) {
+  .mix-grid {
+    width: min(100% - 36px, 420px);
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .mix-card-artwork {
+    aspect-ratio: 1.18 / 1;
+  }
+  .mix-card-play {
+    width: 62px;
+    height: 62px;
+  }
+  .mix-card-caption {
+    min-height: 96px;
+    padding: 17px;
+  }
+  .mix-card-caption h3 {
+    font-size: 1.25rem;
+  }
+}
