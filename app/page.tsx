@@ -26,35 +26,40 @@ export default function Home() {
     let cancelled = false;
     async function loadMixArtwork() {
       try {
-        const profileResponse = await fetch("https://api.mixcloud.com/SparkyGriswold/");
-        const profile = profileResponse.ok ? await profileResponse.json() : {};
-        const profileImage = profile.pictures?.medium_mobile || profile.pictures?.medium || profile.picture || "";
-        const artworkEntries = await Promise.all(siteContent.mixes.map(async (mix, index) => {
-          if (index === 0) return [mix.title, profileImage] as const;
-          const query = mix.title
-            .replace(/^SPARKY GRISWOLD PRESENTS…/i, "")
-            .replace(/^THE /i, "")
-            .replace(/[‘’]/g, "'")
-            .replace(/\s+/g, " ")
-            .trim();
-          try {
-            const response = await fetch("https://api.mixcloud.com/search/?q=" + encodeURIComponent(query) + "&type=cloudcast&limit=10");
-            if (!response.ok) return [mix.title, profileImage] as const;
-            const result = await response.json();
-            const shows = Array.isArray(result.data) ? result.data : [];
-            const matchingShow = shows.find((show: any) => {
-              const creator = String(show.user?.username || show.user?.key || show.url || "").toLowerCase();
-              const title = String(show.name || "").toLowerCase().replace(/[’‘]/g, "'");
-              return creator.includes("sparkygriswold") && (title.includes(query.toLowerCase()) || query.toLowerCase().includes(title));
-            }) || shows.find((show: any) =>
-              String(show.user?.username || show.user?.key || show.url || "").toLowerCase().includes("sparkygriswold")
-            );
-            const image = matchingShow?.pictures?.medium_mobile || matchingShow?.pictures?.medium || matchingShow?.picture || profileImage;
+        const response = await fetch("https://api.mixcloud.com/SparkyGriswold/cloudcasts/?limit=100");
+        if (!response.ok) return;
+        const result = await response.json();
+        const shows = Array.isArray(result.data) ? result.data : [];
+        const normalize = (value: string) => value
+          .toLowerCase()
+          .replace(/[’‘]/g, "'")
+          .replace(/[^a-z0-9]+/g, " ")
+          .trim();
+        const aliases: Record<number, string[]> = {
+          1: ["summer 26", "summer 2026"],
+          2: ["new wave memories", "new wave mix"],
+          3: ["summer vacation"],
+          4: ["summer at sparky s", "summer at sparkys"],
+          5: ["holiday hangover"],
+        };
+        const artworkEntries = siteContent.mixes.map((mix, index) => {
+          if (index === 0) {
+            const firstFeaturedShow = shows.find((show: any) => show.pictures?.medium_mobile || show.pictures?.medium || show.picture);
+            const image = firstFeaturedShow?.pictures?.medium_mobile || firstFeaturedShow?.pictures?.medium || firstFeaturedShow?.picture || "";
             return [mix.title, image] as const;
-          } catch {
-            return [mix.title, profileImage] as const;
           }
-        }));
+
+          const candidates = aliases[index] || [normalize(mix.title)];
+          const matchingShow = shows.find((show: any) => {
+            const showTitle = normalize(String(show.name || ""));
+            return candidates.some((candidate) => {
+              const wanted = normalize(candidate);
+              return showTitle.includes(wanted) || wanted.includes(showTitle);
+            });
+          });
+          const image = matchingShow?.pictures?.medium_mobile || matchingShow?.pictures?.medium || matchingShow?.picture || "";
+          return [mix.title, image] as const;
+        });
         if (!cancelled) setMixArtwork(Object.fromEntries(artworkEntries.filter((entry) => entry[1])));
       } catch {
         // Keep the music list usable if Mixcloud's public API is temporarily unavailable.
