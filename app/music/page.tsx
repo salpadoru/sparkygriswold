@@ -13,17 +13,17 @@ export default function MusicPage() {
       <header className="music-page-header">
         <a href="/" className="music-back"><ArrowLeft size={16} /> BACK</a>
         <span>SPARKY GRISWOLD</span>
-        <a href={siteContent.social.mixcloud} target="_blank" rel="noreferrer">MIXCLOUD ↗</a>
+        <a href={siteContent.social.mixcloud} target="_blank" rel="noreferrer">DJ MIXES ↗</a>
       </header>
 
       <section className="music-page-intro">
         <div className="music-page-title">
-          <h1>Explore on <span>Mixcloud</span></h1>
+          <h1>DJ <span>Mixes</span></h1>
           <div className="music-page-title-rule" />
         </div>
       </section>
 
-      <section className="music-feeds music-card-grid" aria-label="Mixcloud music">
+      <section className="music-feeds music-card-grid" aria-label="DJ mixes">
         {[
           { title: "SUMMER VACATION", href: "https://www.mixcloud.com/SparkyGriswold/sparky-griswold-presentssummer-vacation/" },
           { title: "THE HOLIDAY HANGOVER", href: "https://www.mixcloud.com/SparkyGriswold/the-holiday-hangover/" },
