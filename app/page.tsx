@@ -6,14 +6,14 @@ import { galleryImages, siteContent } from "../lib/content";
 import { eventItems } from "../lib/generatedEvents";
 import { formatEventDate } from "../lib/events";
 
-const nav = ["ABOUT", "SERVICES", "CLIENTS", "EVENTS", "MUSIC", "GALLERY", "CONTACT"];
+const nav = ["ABOUT", "SERVICES", "CLIENTS", "MUSIC", "EVENTS", "GALLERY", "CONTACT"];
 
 const sectionHref: Record<string, string> = {
   ABOUT: "#about",
   SERVICES: "#services",
   CLIENTS: "#clients",
-  EVENTS: "#events",
   MUSIC: "#music",
+  EVENTS: "#events",
   GALLERY: "#gallery",
   CONTACT: "#contact",
 };
@@ -153,7 +153,7 @@ export default function Home() {
           <h1>{siteContent.hero.title}</h1>
           <div className="hero-actions">
             <a className="button button-solid" href="#contact">{siteContent.hero.primaryCta} <ArrowUpRight size={16} /></a>
-            <a className="button button-outline" href="#gallery">{siteContent.hero.secondaryCta} <ArrowDownRight size={16} /></a>
+            <a className="button button-outline" href="#music">{siteContent.hero.secondaryCta} <ArrowDownRight size={16} /></a>
           </div>
         </div>
         <div className="hero-index">NYC • DJ • MUSIC • EVENTS</div>
@@ -223,10 +223,40 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="music" className="music-section">
+        <div className="section-heading">
+          <div>
+            <p className="section-kicker">04 / MUSIC</p>
+            <h2>DJ<br /><span>MIXES</span></h2>
+          </div>
+          <Play size={44} strokeWidth={1} />
+        </div>
+
+        <div className="mix-grid">
+          {siteContent.mixes.map((mix, index) => (
+            <a className="mix-card" key={mix.title} href={mixLinks[mix.title] || mix.href} target="_blank" rel="noreferrer">
+              <div className="mix-card-artwork">
+                {mixArtwork[mix.title] && <img src={mixArtwork[mix.title]} alt="" loading="lazy" />}
+                <span className="mix-card-number">0{index + 1} / MIXCLOUD</span>
+                <span className="mix-card-play" aria-hidden="true"><Play size={28} fill="currentColor" /></span>
+                <span className="mix-card-open">LISTEN ON MIXCLOUD ↗</span>
+              </div>
+              <div className="mix-card-caption">
+                <div>
+                  <p>SPARKY GRISWOLD • DJ MIXES</p>
+                  <h3>{mix.title}</h3>
+                </div>
+                <ArrowUpRight size={22} />
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+
       <section id="events" className="events-section">
         <div className="section-heading">
           <div>
-            <p className="section-kicker">04 / EVENTS</p>
+            <p className="section-kicker">05 / EVENTS</p>
             <h2>FEEL THE<br /><span>VIBE</span></h2>
           </div>
           <p className="section-note">WEDDINGS • CORPORATE • CLUBS • FESTIVALS</p>
@@ -252,36 +282,6 @@ export default function Home() {
                   <span>BOOK SPARKY</span>
                   <ArrowUpRight size={19} />
                 </div>
-              </div>
-            </a>
-          ))}
-        </div>
-      </section>
-
-      <section id="music" className="music-section">
-        <div className="section-heading">
-          <div>
-            <p className="section-kicker">05 / MUSIC</p>
-            <h2>DJ<br /><span>MIXES</span></h2>
-          </div>
-          <Play size={44} strokeWidth={1} />
-        </div>
-
-        <div className="mix-grid">
-          {siteContent.mixes.map((mix, index) => (
-            <a className="mix-card" key={mix.title} href={mixLinks[mix.title] || mix.href} target="_blank" rel="noreferrer">
-              <div className="mix-card-artwork">
-                {mixArtwork[mix.title] && <img src={mixArtwork[mix.title]} alt="" loading="lazy" />}
-                <span className="mix-card-number">0{index + 1} / MIXCLOUD</span>
-                <span className="mix-card-play" aria-hidden="true"><Play size={28} fill="currentColor" /></span>
-                <span className="mix-card-open">LISTEN ON MIXCLOUD ↗</span>
-              </div>
-              <div className="mix-card-caption">
-                <div>
-                  <p>SPARKY GRISWOLD • DJ MIXES</p>
-                  <h3>{mix.title}</h3>
-                </div>
-                <ArrowUpRight size={22} />
               </div>
             </a>
           ))}
@@ -320,7 +320,6 @@ export default function Home() {
           <div className="social-row">
             <a href={siteContent.social.mixcloud} target="_blank" rel="noopener noreferrer">MIXCLOUD ↗</a>
             <a href={siteContent.social.instagram} target="_blank" rel="noopener noreferrer">INSTAGRAM ↗</a>
-            <a href={siteContent.social.x} target="_blank" rel="noopener noreferrer">X ↗</a>
             <a href={siteContent.social.youtube} target="_blank" rel="noopener noreferrer">YOUTUBE ↗</a>
           </div>
         </div>
