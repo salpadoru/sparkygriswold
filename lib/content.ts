@@ -9,7 +9,7 @@ export const siteContent = {
     title: "SPARKY\nGRISWOLD",
     body: "Sparky is a passionate, open-format DJ known for high-energy sets that blend fresh tracks with timeless classics. With 15+ years in the New York tri-state area, he brings an eclectic musical style and unmatched crowd-reading skills to every event.",
     primaryCta: "BOOK SPARKY",
-    secondaryCta: "VIEW GALLERY",
+    secondaryCta: "DJ MIXES",
   },
   archive: {
     title: "THE DJ",
