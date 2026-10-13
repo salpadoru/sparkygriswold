@@ -53,12 +53,14 @@ export const siteContent = {
     "Leila Heller Art Gallery", "9A NYC", "Pianos", "Caroline's on Broadway", "Subculture New York",
     "The Graham Bar Brooklyn", "The Ritz-Carlton White Plains", "41 North Hotel", "Peekskill Mother's Yay! Market",
     "Peekskill HoliYay! Market", "River Outpost Brewing Company", "Craft Tacos & Tequila", "Hair of the Dog",
+    "National Arts Club NYC", "The Mansion", "The Pierre Hotel", "The Garrison",
+    "Grand Palladium Resort México", "Greenwich Audubon Center", "Indian Harbor Yacht Club", "J House Hotel",
+    "Butter NYC", "CV Rich Mansion White Plains", "Norwood Club",
   ],
   contact: { phone: "917-731-8669", email: "info@sparkygriswold.com", location: "New York" },
   social: {
     mixcloud: "https://www.mixcloud.com/SparkyGriswold/",
     instagram: "https://www.instagram.com/sparkygriswold/",
-    x: "https://x.com/sparkygriswold",
     youtube: "https://www.youtube.com/channel/UC35VgUHjggiefJFCCfNVxJw",
   },
 };
