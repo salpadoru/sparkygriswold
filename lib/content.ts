@@ -51,11 +51,11 @@ export const siteContent = {
     "The NoMad Hotel", "Soho House", "Tribeca Rooftop + Tribeca 360°", "VIP Room", "Goldbar", "HILO",
     "The Park", "The Soho Grand Hotel", "Demi Monde", "Santos Party House", "Bathhouse Studios",
     "Leila Heller Art Gallery", "9A NYC", "Pianos", "Caroline's on Broadway", "Subculture New York",
-    "The Graham Bar Brooklyn", "The Ritz-Carlton White Plains", "41 North Hotel", "Peekskill Mother's Yay! Market",
+    "The Graham Bar Brooklyn", "The Ritz-Carlton White Plains", "41 North Hotel", "Taj Lounge", "Hudson Harbor Clubhouse", "Peekskill Mother's Yay! Market",
     "Peekskill HoliYay! Market", "River Outpost Brewing Company", "Craft Tacos & Tequila", "Hair of the Dog",
     "National Arts Club NYC", "The Mansion", "The Pierre Hotel", "The Garrison",
     "Grand Palladium Resort México", "Greenwich Audubon Center", "Indian Harbor Yacht Club", "J House Hotel",
-    "Butter NYC", "CV Rich Mansion White Plains", "Norwood Club",
+    "Butter NYC", "CV Rich Mansion", "Norwood Club",
   ],
   contact: { phone: "917-731-8669", email: "info@sparkygriswold.com", location: "New York" },
   social: {

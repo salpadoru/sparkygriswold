@@ -177,7 +177,7 @@ export default function Home() {
         <div className="section-heading">
           <div>
             <p className="section-kicker">02 / SERVICES</p>
-            <h2>THE ULTIMATE<br /><span>DJ EXPERIENCE</span></h2>
+            <h2>THE ULTIMATE<br /><span>EXPERIENCE</span></h2>
           </div>
           <p className="section-note">TAILORED DJ EXPERIENCES</p>
         </div>
@@ -216,7 +216,7 @@ export default function Home() {
         </div>
 
         <div className="venues-block">
-          <p className="section-kicker">SELECTED VENUES & EVENTS</p>
+          <p className="section-kicker">SELECTED VENUES</p>
           <div className="venue-list">
             {siteContent.venues.map((venue) => <span key={venue}>{venue}</span>)}
           </div>
@@ -292,7 +292,7 @@ export default function Home() {
         <div className="section-heading">
           <div>
             <p className="section-kicker">06 / GALLERY</p>
-            <h2>PHOTO<br /><span>GALLERY</span></h2>
+            <h2>PHOTOS</h2>
           </div>
           <p className="section-note">LIVE EVENT PHOTO ARCHIVE</p>
         </div>
