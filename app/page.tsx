@@ -121,7 +121,7 @@ export default function Home() {
     <main className="site-shell">
       <header className="site-header">
         <a href="#" className="brand" aria-label="Sparky Griswold home">
-          <img src="https://sparkygriswold.com/wp-content/uploads/2025/05/sparky-logo-removed.png" alt="Sparky Griswold" />
+          <img src="/images/uploads/2025/05/sparky-logo-removed.png" alt="Sparky Griswold" />
         </a>
         <nav className="desktop-nav">
           {nav.map((item) => (
@@ -211,7 +211,7 @@ export default function Home() {
             </article>
           ))}
           <div className="client-image-tile" aria-hidden="true">
-            <img src="https://sparkygriswold.com/wp-content/uploads/2015/04/19.jpg" alt="" />
+            <img src="/images/uploads/2015/04/19.jpg" alt="" />
           </div>
         </div>
 
