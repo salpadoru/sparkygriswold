@@ -1420,7 +1420,7 @@ footer {
 
 /* --- Restore the original approved home-page hero image --- */
 .hero-image {
-  background-image: url("https://sparkygriswold.com/wp-content/uploads/2015/04/3.jpg");
+  background-image: url("/images/uploads/2015/04/3.jpg");
 }
 
 
